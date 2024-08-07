@@ -1,0 +1,2953 @@
+Notebook[{
+Cell[BoxData[
+ TemplateBox[{
+  "\[FilledSmallSquare] ", "\"\\\\\[FilledSmallSquare] \"", 
+   "2024-07-05T14:50", "v1 .01", "M. J. Steil", 
+   TemplateBox[{"martinsteil@gmx.de", "mailto:martinsteil@gmx.de"}, 
+    "HyperlinkURL"], "TU Darmstadt"},
+  "RowWithSeparators"]], "NotebookHeader",
+ FontFamily->"Source Sans Pro",
+ FontSize->14,
+ FontWeight->"Normal",
+ FontSlant->"Plain",
+ CellTags->"NB`Header",ExpressionUUID->"cf812730-dacf-48e5-a73c-875498ebc4a5"],
+
+Cell[CellGroupData[{
+
+Cell["Tagged Methods", \
+"Title",ExpressionUUID->"c62703da-2baf-46d4-9087-88ef95c43060"],
+
+Cell[TextData[{
+ "Martin Jakob ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["Steil", "1"], TraditionalForm]],ExpressionUUID->
+  "f4784444-cd55-4d3e-b499-6e74edc3d30f"]
+}], "Author",ExpressionUUID->"0ea66777-a543-434e-9eaa-14eaa568b91f"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["", "1"], TraditionalForm]],ExpressionUUID->
+  "223f14b8-2bda-4fef-8c97-6b3e29fd5cca"],
+ "Technische Universit\[ADoubleDot]t Darmstadt"
+}], "Affiliation",ExpressionUUID->"542366bb-e560-454c-b945-49d478b19000"],
+
+Cell["\<\
+A set of useful methods which are individually tagged in separate \
+initialisation cells and thus can be updated across notebooks with \
+UpdateTaggedMethod[...].\
+\>", "Abstract",ExpressionUUID->"7e561066-c7df-494b-8ea0-77b980c802bb"],
+
+Cell[CellGroupData[{
+
+Cell["Initialization", \
+"InitializationSection",ExpressionUUID->"83ee48aa-d448-4d5d-b51a-\
+8f84c22939ec"],
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", "\"\<Global`*\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"SetDirectory", "[", 
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"$DistributedContexts", "=", 
+    RowBox[{"{", "}"}]}], ";"}], "\n", "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"Disable", " ", "Notebookhistory"}], ",", " ", 
+    RowBox[{"[", 
+     RowBox[{
+      RowBox[{"https", ":"}], "//", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"mathematica", ".", "stackexchange", ".", "com"}], "/", 
+          "questions"}], "/", "11258"}], "/", "are"}], "-", "there", "-", 
+       "suitable", "-", "versioning", "-", "systems", "-", "for", "-", 
+       "mathematica", "-", "notebooks"}]}], "]"}]}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"SetOptions", "[", 
+   RowBox[{
+    RowBox[{"EvaluationNotebook", "[", "]"}], ",", 
+    RowBox[{"PrivateNotebookOptions", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"\"\<FileOutlineCache\>\"", "\[Rule]", "False"}], "}"}]}], ",", 
+    RowBox[{"System`TrackCellChangeTimes", "\[Rule]", "False"}]}], "]"}], 
+  "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Display", " ", "the", " ", "Timing", " ", "of", " ", "an", " ", 
+    "Evaluation", " ", "in", " ", "a", " ", "Notebook", " ", 
+    RowBox[{"Window", " ", "[", 
+     RowBox[{
+      RowBox[{"https", ":"}], "//", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"reference", ".", "wolfram", ".", "com"}], "/", "language"}],
+         "/", "howto"}], "/", 
+       RowBox[{
+       "DisplayTheTimingOfAnEvaluationInANotebookWindow", ".", "html"}]}]}], 
+     "]"}]}], " ", "*)"}]}], "\n", 
+ RowBox[{"SetOptions", "[", 
+  RowBox[{
+   RowBox[{"EvaluationNotebook", "[", "]"}], ",", 
+   RowBox[{"EvaluationCompletionAction", "\[Rule]", 
+    RowBox[{"{", "\"\<ShowTiming\>\"", "}"}]}]}], "]"}]}], "Code",
+ InitializationCell->True,
+ CellLabel->
+  "In[221]:=",ExpressionUUID->"dc4b6ff5-3f40-43e2-9d15-522f116dd991"],
+
+Cell[CellGroupData[{
+
+Cell["Tagged Methods", \
+"Subsection",ExpressionUUID->"301d3bc8-d34e-4a3a-a6c8-ed5a73d6ce8e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"*", " ", "Update", " ", "tagged", " ", "methods"}], " ", "**)"}], 
+  "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Needs", "[", 
+     RowBox[{
+     "\"\<UpdateTaggedMethod`\>\"", ",", 
+      "\"\<D:/Github/Mathematica/Packages/UpdateTaggedMethod/\
+UpdateTaggedMethod.m\>\""}], "]"}], ";"}], "\n", 
+   RowBox[{
+   "UpdateTaggedMethods", "[", 
+    "\"\<D:/Github/Mathematica/tagged_methods.nb\>\"", 
+    "]"}]}]}]], \
+"NonEvaluatingCode",ExpressionUUID->"7267a007-6613-4231-907b-1f0f7cff032e"],
+
+Cell[CellGroupData[{
+
+Cell["Notebook/Frontend IO", \
+"Subsubsection",ExpressionUUID->"213681bf-a8fe-466c-a0db-1d2bc262de56"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"SaveToCell", " ", "|", " ", 
+    RowBox[{"v2", ".0"}], " ", "|", " ", 
+    RowBox[{"Save", " ", "assigned", " ", "value", " ", "of", " ", "symbol", 
+     RowBox[{"(", "s", ")"}], " ", "to", " ", "cell", 
+     RowBox[{"(", "s", ")"}]}], " ", "|", " ", 
+    RowBox[{"Modified", " ", "Version", " ", 
+     RowBox[{"of", " ", "[", 
+      RowBox[{
+       RowBox[{"http", ":"}], "//", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"szhorvat", ".", "net"}], "/", "pelican"}], "/", "save"}], 
+        "-", "data", "-", "in", "-", 
+        RowBox[{"notebooks", ".", "html"}]}]}], "]"}]}]}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"ClearAll", "[", "SaveToCell", "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"SaveToCell", "[", 
+     RowBox[{
+      RowBox[{"names_", "/;", 
+       RowBox[{"VectorQ", "[", 
+        RowBox[{"names", ",", "StringQ"}], "]"}]}], ",", 
+      RowBox[{"suffix", ":", 
+       RowBox[{"Except", "[", 
+        RowBox[{"_", "?", "OptionQ"}], "]"}], ":", "\"\<\>\""}], ",", 
+      RowBox[{"comment", ":", 
+       RowBox[{"Except", "[", 
+        RowBox[{"_", "?", "OptionQ"}], "]"}], ":", "\"\<\>\""}], ",", 
+      RowBox[{"opt", ":", 
+       RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", "\[IndentingNewLine]", "\t", 
+       RowBox[{
+        RowBox[{"data", "=", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Symbol", "[", "#", "]"}], "&"}], "/@", "names"}]}], ",", 
+        "\[IndentingNewLine]", "\t", 
+        RowBox[{"label", "=", 
+         RowBox[{"Row", "[", 
+          RowBox[{"Flatten", "@", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"comment", "=!=", "\"\<\>\""}], ",", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"comment", ",", "Plain"}], "]"}], ",", 
+                 "\"\<, \>\""}], "}"}], ",", "Nothing"}], "]"}], ",", 
+             RowBox[{"DateString", "[", "\"\<ISODateTime\>\"", "]"}]}], 
+            "}"}]}], "]"}]}]}], "\[IndentingNewLine]", "\t", "}"}], ",", 
+      "\[IndentingNewLine]", "\t", 
+      RowBox[{"CellPrint", "@", 
+       RowBox[{"Cell", "[", "\n", "\t\t", 
+        RowBox[{
+         RowBox[{"BoxData", "@", 
+          RowBox[{"MapThread", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"RowBox", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"#2", "<>", "suffix"}], ",", "\"\<=\>\"", ",", 
+                RowBox[{"ToBoxes", "[", 
+                 RowBox[{"Iconize", "[", 
+                  RowBox[{"#1", ",", "label", ",", 
+                   RowBox[{"Method", "\[Rule]", "Compress"}]}], "]"}], "]"}], 
+                ",", "\"\<;\>\""}], "}"}], "]"}], "&"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"data", ",", "names"}], "}"}]}], "]"}]}], ",", "\n", 
+         "\t\t", "\"\<Input\>\"", ",", "\n", "\t\t", 
+         RowBox[{"GeneratedCell", "\[Rule]", "False"}], ",", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"prevent", " ", "deletion", " ", "by", " ", "Cell"}], ">", 
+           RowBox[{"Delete", " ", "All", " ", 
+            RowBox[{"Output", ":"}]}]}], "*)"}], "\n", "\t\t", 
+         RowBox[{"CellLabel", "\[Rule]", "\"\<(saved)\>\""}], ",", "\n", 
+         "\t\t", 
+         RowBox[{"CellLabelAutoDelete", "\[Rule]", "False"}], ",", "\n", 
+         "\t\t", "opt"}], "\n", "\t", "]"}]}]}], "\[IndentingNewLine]", 
+     "]"}]}], "\n", "\n", 
+   RowBox[{"SetAttributes", "[", 
+    RowBox[{"SaveToCell", ",", "HoldFirst"}], "]"}], "\n", 
+   RowBox[{
+    RowBox[{"SaveToCell", "[", 
+     RowBox[{"var_", ",", 
+      RowBox[{"name", ":", 
+       RowBox[{"Except", "[", 
+        RowBox[{"_", "?", "OptionQ"}], "]"}], ":", "\"\<\>\""}], ",", 
+      RowBox[{"comment", ":", 
+       RowBox[{"Except", "[", 
+        RowBox[{"_", "?", "OptionQ"}], "]"}], ":", "\"\<\>\""}], ",", 
+      RowBox[{"opt", ":", 
+       RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", 
+    RowBox[{"With", "[", 
+     RowBox[{
+      RowBox[{"{", "\[IndentingNewLine]", "\t", 
+       RowBox[{
+        RowBox[{"data", "=", 
+         RowBox[{"Evaluate", "[", "var", "]"}]}], ",", "\[IndentingNewLine]", 
+        "\t", 
+        RowBox[{"label", "=", 
+         RowBox[{"Row", "[", 
+          RowBox[{"Flatten", "@", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"comment", "=!=", "\"\<\>\""}], ",", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{"comment", ",", "Plain"}], "]"}], ",", 
+                 "\"\<, \>\""}], "}"}], ",", "Nothing"}], "]"}], ",", 
+             RowBox[{"DateString", "[", "\"\<ISODateTime\>\"", "]"}]}], 
+            "}"}]}], "]"}]}]}], "\[IndentingNewLine]", "\t", "}"}], ",", 
+      "\[IndentingNewLine]", "\t", 
+      RowBox[{"CellPrint", "@", 
+       RowBox[{"Cell", "[", "\n", "\t\t", 
+        RowBox[{
+         RowBox[{"BoxData", "@", 
+          RowBox[{"RowBox", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"name", "=!=", "\"\<\>\""}], ",", "name", ",", 
+               RowBox[{"MakeBoxes", "[", "var", "]"}]}], "]"}], ",", 
+             "\"\<=\>\"", ",", 
+             RowBox[{"ToBoxes", "[", 
+              RowBox[{"Iconize", "[", 
+               RowBox[{"data", ",", "label", ",", 
+                RowBox[{"Method", "\[Rule]", "Compress"}]}], "]"}], "]"}], 
+             ",", "\"\<;\>\""}], "}"}], "]"}]}], ",", "\n", "\t\t", 
+         "\"\<Input\>\"", ",", "\n", "\t\t", 
+         RowBox[{"GeneratedCell", "\[Rule]", "False"}], ",", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"prevent", " ", "deletion", " ", "by", " ", "Cell"}], ">", 
+           RowBox[{"Delete", " ", "All", " ", 
+            RowBox[{"Output", ":"}]}]}], "*)"}], "\n", "\t\t", 
+         RowBox[{"CellLabel", "\[Rule]", "\"\<(saved)\>\""}], ",", "\n", 
+         "\t\t", 
+         RowBox[{"CellLabelAutoDelete", "\[Rule]", "False"}], ",", "\n", 
+         "\t\t", "opt"}], "\n", "\t", "]"}]}]}], "\[IndentingNewLine]", 
+     "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"SaveToCell", "::", "usage"}], "=", 
+     "\"\<SaveToCell[var_,name:Except[_?OptionQ]:\\\"\\\",comment:Except[_?\
+OptionQ]:\\\"\\\",opt:OptionsPattern[]]: saves the assignment of var/or the \
+data in\\\n var (under name if name=!=\\\"\\\") in a compressed iconized form \
+with a label including comment and a time stamp.\\n\\\n\
+SaveToCell[names_/;VectorQ[names,StringQ],suffix_:Except[_?OptionQ]:\\\"\\\",\
+comment:Except[_?OptionQ]:\\\"\\\",opt:OptionsPattern[]]: saves the \
+assignments behind the elements of names in\\\n in a compressed iconized form \
+with suffix appended to the symbol names and a label including comment and a \
+time stamp.\>\""}], ";"}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"SaveToCell",
+ CellLabel->
+  "In[226]:=",ExpressionUUID->"0687ddd8-7865-4180-ba31-42cf61b0196e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"AutoCollapse", " ", "|", " ", 
+    RowBox[{"v2", ".0"}], " ", "|", " ", 
+    RowBox[{"Close", " ", "CellGroup"}], " ", "|", " ", 
+    RowBox[{"[", 
+     RowBox[{
+      RowBox[{"https", ":"}], "//", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"mathematica", ".", "stackexchange", ".", "com"}], "/", "a"}],
+        "/", "683"}]}], "]"}]}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"AutoCollapse", "[", "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", "}"}], ",", "\n", "\t", 
+      RowBox[{
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"$FrontEnd", "=!=", "$Failed"}], ",", "\n", "\t\t", 
+         RowBox[{
+          RowBox[{"SelectionMove", "[", 
+           RowBox[{
+            RowBox[{"EvaluationNotebook", "[", "]"}], ",", "All", ",", 
+            "GeneratedCell"}], "]"}], ";", "\[IndentingNewLine]", "\t\t", 
+          RowBox[{
+          "FrontEndTokenExecute", "[", 
+           "\"\<SelectionCloseUnselectedCells\>\"", "]"}]}]}], "\n", "\t", 
+        "]"}], ";"}]}], "\n", "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"AutoCollapse", "::", "usage"}], "=", 
+     "\"\<Collapse input cells by grouping them with the generated output \
+cells.\>\""}], ";"}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"AutoCollapse",
+ CellLabel->
+  "In[231]:=",ExpressionUUID->"2ec47d8b-8fa4-476a-a6d7-8d6514306cf6"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"CellPrintDisplayFormulaNumbered", " ", "|", " ", 
+    RowBox[{"v2", ".3"}], " ", "|", " ", 
+    RowBox[{"CellPrint", " ", "a", " ", "DisplayFormulaNumbered"}]}], " ", 
+   "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"ClearAll", "[", 
+     RowBox[{
+     "CellPrintDisplayFormulaNumbered", ",", 
+      "CellPrintDisplayFormulaNumberedNAC"}], "]"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"CellPrintDisplayFormulaNumbered", "[", 
+     RowBox[{"exp_", ",", 
+      RowBox[{"tag_", ":", "None"}], ",", 
+      RowBox[{"comment_", ":", "\"\<\>\""}], ",", 
+      RowBox[{"generatedCellQ_", ":", "False"}], ",", 
+      RowBox[{"groupQ_", ":", "True"}], ",", 
+      RowBox[{"autoCollapseQ_", ":", "True"}]}], "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"frameLabels", ",", "box"}], "}"}], ",", "\[IndentingNewLine]",
+       "\t", 
+      RowBox[{
+       RowBox[{"frameLabels", "=", 
+        RowBox[{"CellFrameLabels", "\[Rule]", 
+         RowBox[{"{", "\n", "\t\t", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"None", ",", 
+             RowBox[{"Cell", "[", 
+              RowBox[{
+               RowBox[{"TextData", "[", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"tag", "===", "None"}], ",", "\"\<\>\"", ",", 
+                    RowBox[{
+                    RowBox[{"ToString", "[", "tag", "]"}], "<>", 
+                    "\"\< \>\""}]}], "]"}], "<>", "\"\<(\>\""}], ",", 
+                  RowBox[{"CounterBox", "[", "\"\<Chapter\>\"", "]"}], ",", 
+                  "\"\<.\>\"", ",", 
+                  RowBox[{
+                  "CounterBox", "[", "\"\<DisplayFormulaNumbered\>\"", "]"}], 
+                  ",", "\"\<)\>\""}], "}"}], "]"}], ",", 
+               "\"\<DisplayFormulaEquationNumber\>\""}], "]"}]}], "}"}], ",", 
+           "\n", "\t\t", 
+           RowBox[{"{", 
+            RowBox[{"None", ",", "None"}], "}"}]}], "\n", "\t", "}"}]}]}], 
+       ";", "\[IndentingNewLine]", "\t", 
+       RowBox[{"box", "=", 
+        RowBox[{"BoxData", "[", 
+         RowBox[{"RowBox", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"ToBoxes", "[", "exp", "]"}], ",", 
+            RowBox[{"RowBox", "[", 
+             RowBox[{"{", "comment", "}"}], "]"}]}], "}"}], "]"}], "]"}]}], 
+       ";", "\n", "\t", 
+       RowBox[{"CellPrint", "[", 
+        RowBox[{"Cell", "[", 
+         RowBox[{
+         "box", ",", "\"\<DisplayFormulaNumberedPrinted\>\"", ",", 
+          "frameLabels", ",", "\n", "\t\t", 
+          RowBox[{"GeneratedCell", "\[Rule]", "generatedCellQ"}], ",", 
+          RowBox[{"CellAutoOverwrite", "\[Rule]", "True"}], ",", 
+          RowBox[{"ShowStringCharacters", "\[Rule]", "False"}], ",", 
+          RowBox[{"CellGroupingRules", "\[Rule]", 
+           RowBox[{"If", "[", 
+            RowBox[{
+            "groupQ", ",", "\"\<OutputGrouping\>\"", ",", "Inherited"}], 
+            "]"}]}]}], "]"}], "\n", "\t", "]"}], ";", "\n", "\t", 
+       RowBox[{"If", "[", 
+        RowBox[{"autoCollapseQ", ",", 
+         RowBox[{"AutoCollapse", "[", "]"}]}], "]"}], ";"}]}], 
+     "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"CellPrintDisplayFormulaNumbered", "::", "usage"}], "=", 
+     "\"\<CellPrintDisplayFormulaNumbered[exp_,tag_:None,comment_:\\\"\\\",\
+generatedCellQ_:False,groupQ_:True,autoCollapseQ_:True]:\\\nCellPrint exp to \
+a DisplayFormulaNumberedPrinted output cell.\>\""}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"CellPrintDisplayFormulaNumberedNAC", "[", 
+     RowBox[{"exp_", ",", 
+      RowBox[{"tag_", ":", "None"}], ",", 
+      RowBox[{"comment_", ":", "\"\<\>\""}], ",", 
+      RowBox[{"generatedCellQ_", ":", "False"}], ",", 
+      RowBox[{"groupQ_", ":", "True"}], ",", 
+      RowBox[{"autoCollapseQ_", ":", "False"}]}], "]"}], ":=", 
+    RowBox[{"CellPrintDisplayFormulaNumbered", "[", 
+     RowBox[{
+     "exp", ",", "tag", ",", "comment", ",", "generatedCellQ", ",", "groupQ", 
+      ",", "autoCollapseQ"}], "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"CellPrintDisplayFormulaNumberedNAC", "::", "usage"}], "=", 
+     "\"\<Same as CellPrintDisplayFormulaNumbered[] but autoCollapseQ \
+defaults to false.\>\""}], ";"}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"CellPrintDisplayFormulaNumbered",
+ CellLabel->
+  "In[233]:=",ExpressionUUID->"a2d23d68-593b-46dc-a80d-d2a7ca7ee08b"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"CellPrintTaggedMethodCell", " ", "|", " ", 
+    RowBox[{"v1", ".0"}], " ", "|", " ", 
+    RowBox[{
+    "CellPrint", " ", "an", " ", "Initialization", " ", "Code", " ", "Cell", 
+     " ", "for", " ", "a", " ", "TaggedMethod"}]}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{"ClearAll", "[", "CellPrintTaggedMethodCell", "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"CellPrintTaggedMethodCell", "[", 
+     RowBox[{"name_String", ",", 
+      RowBox[{"version_", ":", "\"\<1.0\>\""}], ",", 
+      RowBox[{"description_", ":", "\"\<\>\""}]}], "]"}], ":=", 
+    RowBox[{"CellPrint", "[", "\n", "\t", 
+     RowBox[{"Cell", "[", 
+      RowBox[{
+       RowBox[{"BoxData", "[", 
+        RowBox[{"RowBox", "[", 
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<(* \>\"", "<>", "name", "<>", "\"\< | v\>\"", "<>", "version", 
+           "<>", " ", "\"\< | \>\"", "<>", "description", "<>", 
+           "\"\< *)\>\""}], "}"}], "]"}], "]"}], ",", "\n", "\t", 
+       "\"\<Code\>\"", ",", 
+       RowBox[{"InitializationCell", "->", "True"}], ",", 
+       RowBox[{"CellTags", "->", "name"}]}], "]"}], "\n", "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"CellPrintTaggedMethodCell", "::", "usage"}], "=", 
+     "\"\<CellPrintTaggedMethodCell[name_String,version_:\\\"1.0\\\",\
+description_:\\\"\\\"]:\\\nCellPrint an Initialization Code Cell for a \
+TaggedMethod with a given name (and versionand description).\>\""}], 
+    ";"}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"CellPrintTaggedMethodCell",
+ CellLabel->
+  "In[238]:=",ExpressionUUID->"5e5811d3-3536-4fa3-b3a9-fd3ff521cd6b"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"ToInterpretationBox", " ", "|", " ", 
+    RowBox[{"v1", ".0"}], " ", "|", " ", 
+    RowBox[{"Generate", " ", "an", " ", "InterpretationBox"}]}], " ", "*)"}], 
+  "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"ToInterpretationBox", "[", "raw_", "]"}], "[", "formatted_", 
+     "]"}], ":=", 
+    RowBox[{"With", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"box", "=", 
+        RowBox[{"ToBoxes", "[", "formatted", "]"}]}], "}"}], ",", 
+      RowBox[{"InterpretationBox", "[", 
+       RowBox[{
+        RowBox[{"RowBox", "[", 
+         RowBox[{"{", "box", "}"}], "]"}], ",", "raw"}], "]"}]}], "]"}]}], 
+   "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"ToInterpretationBox", "::", "usage"}], "=", 
+     "\"\<ToInterpretationBox[\!\(\*StyleBox[\"raw\",FontSlant->\"Italic\"]\)_\
+][\!\(\*StyleBox[\"formatted\",FontSlant->\"Italic\"]\)_]: Generate an \
+InterpretationBox displaying \!\(\*StyleBox[\"formatted\",FontSlant->\"Italic\
+\"]\)\!\(\*StyleBox[\" \",FontSlant->\"Italic\"]\) using \
+`ToBoxes[\!\(\*StyleBox[\"formatted\",FontSlant->\"Italic\"]\)]` while beeing\
+\\\ninterpreted as \!\(\*StyleBox[\"raw\",FontSlant->\"Italic\"]\). Very \
+usefull when setting custom Formats.\>\""}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"ToInterpretationBox", "//", "SetReadProtected"}], 
+    ";"}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"ToInterpretationBox",
+ CellLabel->"In[241]:=",ExpressionUUID->"db6c5a36-7393-4444-9360-274d1734ac13"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Notebook Style", \
+"Subsubsection",ExpressionUUID->"a30c25da-315e-4933-9f8b-02b1d9c79c16"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"NotebookHeaderUpdate", " ", "|", " ", 
+    RowBox[{"v1", ".1"}], " ", "|", " ", 
+    RowBox[{
+    "Update", " ", "ISODateTime", " ", "in", " ", "NotebookHeader"}]}], " ", 
+   "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"ClearAll", "[", "NotebookHeaderUpdate", "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"NotebookHeaderUpdate", "[", 
+     RowBox[{"rule_", ":", 
+      RowBox[{"{", "}"}]}], "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"header", ",", "separator"}], "}"}], ",", "\n", "\t", 
+      RowBox[{
+       RowBox[{"separator", "=", "\"\<\\\\[FilledSmallSquare] \>\""}], ";", 
+       "\n", "\t", 
+       RowBox[{"NotebookLocate", "[", "\"\<NB`Header\>\"", "]"}], ";", "\n", 
+       "\t", 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{"https", ":"}], "//", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"mathematica", ".", "stackexchange", ".", "com"}], "/", 
+            "a"}], "/", "1411"}], "/", "42436"}]}], "*)"}], 
+       "\[IndentingNewLine]", "\t", 
+       RowBox[{"header", "=", 
+        RowBox[{"First", "[", 
+         RowBox[{"FrontEndExecute", "[", 
+          RowBox[{"FrontEnd`ExportPacket", "[", 
+           RowBox[{
+            RowBox[{"NotebookSelection", "[", 
+             RowBox[{"EvaluationNotebook", "[", "]"}], "]"}], ",", 
+            "\"\<PlainText\>\""}], "]"}], "]"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", "\t", 
+       RowBox[{"header", "=", 
+        RowBox[{"StringSplit", "[", 
+         RowBox[{"header", ",", "separator"}], "]"}]}], ";", "\n", "\t", 
+       RowBox[{
+        RowBox[{"header", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], "=", 
+        RowBox[{"StringDrop", "[", 
+         RowBox[{
+          RowBox[{"DateString", "[", "\"\<ISODateTime\>\"", "]"}], ",", " ", 
+          RowBox[{"-", "3"}]}], "]"}]}], ";", "\n", "\t", 
+       RowBox[{"header", "=", 
+        RowBox[{
+         RowBox[{"header", "//.", "rule"}], "/.", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"str_String", "/;", 
+            RowBox[{"StringContainsQ", "[", 
+             RowBox[{"str", ",", "\"\<@\>\""}], "]"}]}], ":>", 
+           RowBox[{"TemplateBox", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"str", ",", 
+               RowBox[{"\"\<mailto:\>\"", "<>", "str"}]}], "}"}], ",", 
+             "\"\<HyperlinkURL\>\""}], "]"}]}], "}"}]}]}], ";", "\n", "\t", 
+       RowBox[{"header", "=", 
+        RowBox[{"BoxData", "[", 
+         RowBox[{"TemplateBox", "[", 
+          RowBox[{
+           RowBox[{"Flatten", "@", 
+            RowBox[{"{", 
+             RowBox[{
+             "\"\<\[FilledSmallSquare] \>\"", ",", " ", 
+              "\"\<\\\"\\\\\\\[FilledSmallSquare] \\\"\>\"", ",", "header"}], 
+             "}"}]}], ",", "\"\<RowWithSeparators\>\""}], "]"}], "]"}]}], ";",
+        "\n", "\t", 
+       RowBox[{"NotebookWrite", "[", 
+        RowBox[{
+         RowBox[{"EvaluationNotebook", "[", "]"}], ",", 
+         RowBox[{"Cell", "[", "\n", "\t\t", 
+          RowBox[{
+          "header", ",", "\n", "\t\t", "\"\<NotebookHeader\>\"", ",", "\n", 
+           "\t\t", 
+           RowBox[{"CellTags", "\[Rule]", 
+            RowBox[{"{", "\"\<NB`Header\>\"", "}"}]}], ",", "\n", "\t\t", 
+           RowBox[{"FontFamily", "->", "\"\<Source Sans Pro\>\""}], ",", "\n",
+            "\t\t", 
+           RowBox[{"FontSize", "\[Rule]", "14"}], ",", "\n", "\t\t", 
+           RowBox[{"FontWeight", "->", "\"\<Normal\>\""}], ",", "\n", "\t\t", 
+           RowBox[{"FontSlant", "->", "\"\<Plain\>\""}]}], "\n", "\t", 
+          "]"}]}], "]"}]}]}], "\n", "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"NotebookHeaderUpdate", "::", "usage"}], "=", 
+     "\"\<NotebookHeaderUpdate[]: Update NotebookHeader using `rule` and \
+update the ISODateTime.\>\""}], ";"}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"NotebookHeaderUpdate",
+ CellLabel->
+  "In[244]:=",ExpressionUUID->"9d883fec-3474-400e-8d73-f59ef2dd8bb9"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"SetupPrintStyle", " ", "|", " ", 
+    RowBox[{"v1", ".0"}], " ", "|", " ", 
+    RowBox[{
+    "Setup", " ", "style", " ", "for", " ", "notebook", " ", "printout"}]}], 
+   " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{"SetupPrintStyle", "[", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", "header", "}"}], ",", "\n", "\t", 
+     RowBox[{
+      RowBox[{"NotebookLocate", "[", "\"\<NB`Header\>\"", "]"}], ";", "\n", 
+      "\t", 
+      RowBox[{"(*", 
+       RowBox[{
+        RowBox[{"https", ":"}], "//", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"mathematica", ".", "stackexchange", ".", "com"}], "/", 
+           "a"}], "/", "1411"}], "/", "42436"}]}], "*)"}], 
+      "\[IndentingNewLine]", "\t", 
+      RowBox[{"header", "=", 
+       RowBox[{"First", "[", 
+        RowBox[{"FrontEndExecute", "[", 
+         RowBox[{"FrontEnd`ExportPacket", "[", 
+          RowBox[{
+           RowBox[{"NotebookSelection", "[", 
+            RowBox[{"EvaluationNotebook", "[", "]"}], "]"}], ",", 
+           "\"\<PlainText\>\""}], "]"}], "]"}], "]"}]}], ";", "\n", "\t", 
+      "\n", "\t", 
+      RowBox[{"SetOptions", "[", 
+       RowBox[{
+        RowBox[{"EvaluationNotebook", "[", "]"}], ",", "\n", "\t\t", 
+        RowBox[{"PageFooters", "\[Rule]", 
+         RowBox[{"{", "\n", "\t\t\t", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Cell", "[", 
+              RowBox[{
+               RowBox[{"TextData", "[", 
+                RowBox[{"StyleBox", "[", 
+                 RowBox[{
+                  RowBox[{"NotebookFileName", "[", "]"}], ",", 
+                  "\"\<FooterText\>\""}], "]"}], "]"}], ",", "\"\<Header\>\"",
+                ",", 
+               RowBox[{"CellMargins", "\[Rule]", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{"0", ",", "Inherited"}], "}"}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{"Inherited", ",", "Inherited"}], "}"}]}], 
+                 "}"}]}]}], "]"}], ",", "\n", "\t\t\t", "None", ",", "\n", 
+             "\t\t\t", 
+             RowBox[{"Cell", "[", 
+              RowBox[{
+               RowBox[{"TextData", "[", 
+                RowBox[{"StyleBox", "[", 
+                 RowBox[{"header", ",", "\"\<FooterText\>\""}], "]"}], "]"}], 
+               ",", "\"\<Header\>\"", ",", 
+               RowBox[{"CellMargins", "\[Rule]", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{"0", ",", "Inherited"}], "}"}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{"Inherited", ",", "Inherited"}], "}"}]}], 
+                 "}"}]}]}], "]"}]}], "}"}], ",", "\n", "\t\t\t", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Cell", "[", 
+              RowBox[{
+               RowBox[{"TextData", "[", 
+                RowBox[{"StyleBox", "[", 
+                 RowBox[{
+                  RowBox[{"NotebookFileName", "[", "]"}], ",", 
+                  "\"\<FooterText\>\""}], "]"}], "]"}], ",", "\"\<Header\>\"",
+                ",", 
+               RowBox[{"CellMargins", "\[Rule]", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{"0", ",", "Inherited"}], "}"}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{"Inherited", ",", "Inherited"}], "}"}]}], 
+                 "}"}]}]}], "]"}], ",", "\n", "\t\t\t", "None", ",", "\n", 
+             "\t\t\t", 
+             RowBox[{"Cell", "[", 
+              RowBox[{
+               RowBox[{"TextData", "[", 
+                RowBox[{"StyleBox", "[", 
+                 RowBox[{"header", ",", "\"\<FooterText\>\""}], "]"}], "]"}], 
+               ",", "\"\<Header\>\"", ",", 
+               RowBox[{"CellMargins", "\[Rule]", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{"0", ",", "Inherited"}], "}"}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{"Inherited", ",", "Inherited"}], "}"}]}], 
+                 "}"}]}]}], "]"}]}], "}"}]}], "\n", "\t\t", "}"}]}], ",", 
+        "\n", "\t\t", "\n", "\t\t", 
+        RowBox[{"PageHeaderLines", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{"False", ",", "False"}], "}"}]}], ",", "\n", "\t\t", 
+        RowBox[{"PageHeaders", "\[Rule]", 
+         RowBox[{"{", "\n", "\t\t\t", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Cell", "[", "\n", "\t\t\t\t", 
+              RowBox[{
+               RowBox[{"TextData", "[", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"StyleBox", "[", 
+                   RowBox[{
+                    RowBox[{"CounterBox", "[", "\"\<Page\>\"", "]"}], ",", 
+                    "\"\<PageNumber\>\""}], "]"}], ",", 
+                  RowBox[{"StyleBox", "[", 
+                   RowBox[{"\"\</\>\"", ",", "\"\<PageNumber\>\""}], "]"}], 
+                  ",", 
+                  RowBox[{"StyleBox", "[", 
+                   RowBox[{
+                    RowBox[{"CounterBox", "[", 
+                    RowBox[{"\"\<LastPage\>\"", ",", 
+                    RowBox[{
+                    "CounterFunction", "\[RuleDelayed]", "Identity"}]}], 
+                    "]"}], ",", "\"\<PageNumber\>\""}], "]"}]}], "}"}], "]"}],
+                ",", "\n", "\t\t\t\t", "\"\<Header\>\"", ",", 
+               RowBox[{"CellMargins", "\[Rule]", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{"0", ",", "Inherited"}], "}"}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{"Inherited", ",", "Inherited"}], "}"}]}], 
+                 "}"}]}]}], "\n", "\t\t\t", "]"}], ",", "None", ",", "None"}],
+             "}"}], ",", "\n", "\t\t\t", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Cell", "[", "\n", "\t\t\t\t", 
+              RowBox[{
+               RowBox[{"TextData", "[", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"StyleBox", "[", 
+                   RowBox[{
+                    RowBox[{"CounterBox", "[", "\"\<Page\>\"", "]"}], ",", 
+                    "\"\<PageNumber\>\""}], "]"}], ",", 
+                  RowBox[{"StyleBox", "[", 
+                   RowBox[{"\"\</\>\"", ",", "\"\<PageNumber\>\""}], "]"}], 
+                  ",", 
+                  RowBox[{"StyleBox", "[", 
+                   RowBox[{
+                    RowBox[{"CounterBox", "[", 
+                    RowBox[{"\"\<LastPage\>\"", ",", 
+                    RowBox[{
+                    "CounterFunction", "\[RuleDelayed]", "Identity"}]}], 
+                    "]"}], ",", "\"\<PageNumber\>\""}], "]"}]}], "}"}], "]"}],
+                ",", "\n", "\t\t\t\t", "\"\<Header\>\"", ",", 
+               RowBox[{"CellMargins", "\[Rule]", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{"0", ",", "Inherited"}], "}"}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{"Inherited", ",", "Inherited"}], "}"}]}], 
+                 "}"}]}]}], "\n", "\t\t\t", "]"}], ",", "None", ",", "None"}],
+             "}"}]}], "\n", "\t\t", "}"}]}], ",", "\n", "\t\t", "\n", "\t\t", 
+        RowBox[{"PrintAction", "\[Rule]", "\"\<PrintToNotebook\>\""}], ",", 
+        "\n", "\t\t", 
+        RowBox[{"PrintingCopies", "\[Rule]", "1"}], ",", "\n", "\t\t", 
+        RowBox[{"PrintingOptions", "\[Rule]", 
+         RowBox[{"{", "\n", "\t\t\t", 
+          RowBox[{
+           RowBox[{"\"\<FacingPages\>\"", "\[Rule]", "True"}], ",", "\n", 
+           "\t\t\t", 
+           RowBox[{"\"\<FirstPageFace\>\"", "\[Rule]", "Right"}], ",", "\n", 
+           "\t\t\t", 
+           RowBox[{"\"\<FirstPageFooter\>\"", "\[Rule]", "True"}], ",", "\n", 
+           "\t\t\t", 
+           RowBox[{"\"\<FirstPageHeader\>\"", "\[Rule]", "True"}], ",", "\n", 
+           "\t\t\t", 
+           RowBox[{"\"\<PageSize\>\"", "\[Rule]", 
+            RowBox[{"{", 
+             RowBox[{"595.32", ",", "841.92"}], "}"}]}], ",", "\n", "\t\t\t", 
+           RowBox[{
+           "\"\<PaperOrientation\>\"", "\[Rule]", "\"\<Portrait\>\""}], ",", 
+           "\n", "\t\t\t", 
+           RowBox[{"\"\<PaperSize\>\"", "\[Rule]", 
+            RowBox[{"{", 
+             RowBox[{"595.32", ",", "841.92"}], "}"}]}], ",", "\n", "\t\t\t", 
+           RowBox[{"\"\<PrintingMargins\>\"", "\[Rule]", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"28.3465", ",", "28.3465"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"50", ",", "50"}], "}"}]}], "}"}]}]}], "\n", "\t\t", 
+          "}"}]}], ",", "\n", "\t\t", 
+        RowBox[{"PrintingStyleEnvironment", "\[Rule]", "\"\<Printout\>\""}], 
+        ",", "\n", "\t", "\n", "\t\t", 
+        RowBox[{"ShowSyntaxStyles", " ", "->", " ", "True"}]}], "\n", "\t", 
+       "]"}]}]}], "\n", "]"}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"SetupPrintStyle",
+ CellLabel->"In[247]:=",ExpressionUUID->"542581b5-ee2d-45d1-b1af-fbe7e49574d6"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Plotting", \
+"Subsubsection",ExpressionUUID->"60dd43ee-88b6-4576-9ee8-8a490bdd1771"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"ListDensityContourPlot", " ", "|", " ", 
+    RowBox[{"v1", ".0"}], " ", "|"}], "  ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"ClearAll", "[", "ListDensityContourPlot", "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Options", "[", "ListDensityContourPlot", "]"}], "=", 
+     RowBox[{"Join", "[", 
+      RowBox[{
+       RowBox[{"Options", "[", "ListDensityPlot", "]"}], ",", 
+       RowBox[{"Map", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"#", "->", 
+           RowBox[{"OptionValue", "[", 
+            RowBox[{"ListContourPlot", ",", "#"}], "]"}]}], "&"}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+          "ContourLabels", ",", "ContourLines", ",", "Contours", ",", 
+           "ContourShading", ",", "ContourStyle"}], "}"}]}], "]"}]}], "]"}]}],
+     ";"}], "\n", 
+   RowBox[{
+    RowBox[{"ListDensityContourPlot", "[", 
+     RowBox[{"data_", ",", 
+      RowBox[{"OptionsPattern", "[", "]"}]}], "]"}], ":=", 
+    RowBox[{"With", "[", 
+     RowBox[{
+      RowBox[{"{", "\n", "\t", 
+       RowBox[{
+        RowBox[{"contourOptions", "=", 
+         RowBox[{
+          RowBox[{"Map", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"#", "->", 
+              RowBox[{"OptionValue", "[", 
+               RowBox[{"ListDensityContourPlot", ",", "#"}], "]"}]}], "&"}], 
+            ",", 
+            RowBox[{
+             RowBox[{"Options", "[", "ListContourPlot", "]"}], "[", 
+             RowBox[{"[", 
+              RowBox[{"All", ",", "1"}], "]"}], "]"}]}], "]"}], "/.", 
+          RowBox[{"{", "\n", "\t\t", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Rule", "[", 
+              RowBox[{"PlotLegends", ",", "x_"}], "]"}], ":>", 
+             RowBox[{"Rule", "[", 
+              RowBox[{"PlotLegends", ",", "None"}], "]"}]}], ",", 
+            RowBox[{
+             RowBox[{"Rule", "[", 
+              RowBox[{"ColorFunction", ",", "x_"}], "]"}], ":>", 
+             RowBox[{"Rule", "[", 
+              RowBox[{"ColorFunction", ",", 
+               RowBox[{
+                RowBox[{"Opacity", "[", "0", "]"}], "&"}]}], "]"}]}]}], 
+           "}"}]}]}], ",", "\n", "\t", 
+        RowBox[{"densityOptions", "=", 
+         RowBox[{"Map", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"#", "->", 
+             RowBox[{"OptionValue", "[", 
+              RowBox[{"ListDensityContourPlot", ",", "#"}], "]"}]}], "&"}], 
+           ",", 
+           RowBox[{
+            RowBox[{"Options", "[", "ListDensityPlot", "]"}], "[", 
+            RowBox[{"[", 
+             RowBox[{"All", ",", "1"}], "]"}], "]"}]}], "]"}]}]}], "}"}], ",",
+       "\n", "\t", 
+      RowBox[{
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"OptionValue", "[", 
+           RowBox[{"ListDensityContourPlot", ",", "Contours"}], "]"}], "===", 
+          "0"}], ",", "\n", "\t\t", 
+         RowBox[{
+          RowBox[{"Return", "@", 
+           RowBox[{"Show", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"ListDensityPlot", "[", 
+                RowBox[{"data", ",", "##"}], "]"}], "&"}], "@@", 
+              "densityOptions"}], "}"}], "]"}]}], ";"}], ",", "\n", "\t\t", 
+         RowBox[{"(*", "else", "*)"}], "\n", "\t\t", 
+         RowBox[{"Return", "@", 
+          RowBox[{"Show", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"ListDensityPlot", "[", 
+                RowBox[{"data", ",", "##"}], "]"}], "&"}], "@@", 
+              "densityOptions"}], ",", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"ListContourPlot", "[", 
+                RowBox[{"data", ",", "##"}], "]"}], "&"}], "@@", 
+              "contourOptions"}]}], "}"}], "]"}]}]}], "\n", "\t", "]"}], 
+       ";"}]}], "\[IndentingNewLine]", "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"ListDensityContourPlot", "::", "usage"}], "=", 
+     "\"\<ListDensityContourPlot[data_,OptionsPattern[]]: A simple wrapper to \
+create a ListDensityPlot of `data` with given options overlayed\\\nwith a \
+ListContourPlot with given options (e.g. Contour->10) but no own coloring \
+between contours.\>\""}], ";"}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"ListDensityContourPlot",
+ CellLabel->"In[248]:=",ExpressionUUID->"ea4af112-f5f1-4b11-bc3b-6be972b142cf"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Parallelization", \
+"Subsubsection",ExpressionUUID->"426ae50f-500f-4c4b-b921-a39d70ffb515"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"UniqueParallel", " ", "|", " ", 
+    RowBox[{"v1", ".0"}], " ", "|", " ", 
+    RowBox[{
+    "Creates", " ", "a", " ", "unique", " ", "identifier", " ", "across", " ",
+      "kernels"}]}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{"ClearAll", "[", "UniqueParallel", "]"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"UniqueParallel", "[", "]"}], ":=", 
+    RowBox[{"Symbol", "[", 
+     RowBox[{
+      RowBox[{"ToString", "[", 
+       RowBox[{"Unique", "[", "]"}], "]"}], "<>", "\"\<$\>\"", "<>", 
+      RowBox[{"ToString", "[", "$KernelID", "]"}]}], "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"UniqueParallel", "::", "usage"}], "=", 
+     "\"\<UniqueParallel[] creates a unique identifier across kernels using \
+'Symbol[ToString[Unique[]]<>\\\"$\\\"<>ToString[$KernelID]]'.\>\""}], 
+    ";"}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"UniqueParallel",
+ CellLabel->
+  "In[252]:=",ExpressionUUID->"46bb77a5-dd47-4520-b37d-89422c32b5ad"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"EvaluateAll", " ", "|", " ", 
+    RowBox[{"v1", ".0"}], " ", "|", "  ", 
+    RowBox[{
+    "Wrapper", " ", "to", " ", "switch", " ", "between", " ", "Evaluate", " ",
+      "and"}]}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{"ClearAll", "[", "EvaluateAll", "]"}], "\[IndentingNewLine]", 
+   RowBox[{"SetAttributes", "[", 
+    RowBox[{"EvaluateAll", ",", 
+     RowBox[{"{", 
+      RowBox[{"HoldFirst", ",", "SequenceHold"}], "}"}]}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"EvaluateAll", "//", "Options"}], "=", 
+     RowBox[{"{", 
+      RowBox[{"\"\<parallelQ\>\"", "->", "True"}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"EvaluateAll", "[", "exp_", "]"}], "/;", 
+     RowBox[{"OptionValue", "[", 
+      RowBox[{"EvaluateAll", ",", "\"\<parallelQ\>\""}], "]"}]}], ":=", 
+    RowBox[{"ParallelEvaluate", "[", "exp", "]"}]}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"EvaluateAll", "[", "exp_", "]"}], ":=", 
+    RowBox[{"Evaluate", "[", "exp", "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"EvaluateAll", "::", "usage"}], "=", 
+     "\"\<EvaluateAll[\!\(\*StyleBox[\"exp\",FontSlant->\"Italic\"]\)] \
+evaluates the expression \!\(\*StyleBox[\"exp\",FontSlant->\"Italic\"]\) \
+using ParallelEvaluate if OptionValue[EvaluateAll,\\\"parallelQ\\\"]\\\n\
+\!\(\*StyleBox[\" \",FontSlant->\"Italic\"]\)else Evaluate is used for \
+evaluation.\>\""}], ";"}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"EvaluateAll",
+ CellLabel->
+  "In[255]:=",ExpressionUUID->"283a4260-789d-45e9-a900-a5c897ae3027"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"ContextQ", " ", "|", " ", 
+    RowBox[{"v1", ".0"}], " ", "|", " ", 
+    RowBox[{
+    "Return", " ", "True", " ", "if", " ", "name", " ", "is", " ", "a", " ", 
+     "context"}]}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"ClearAll", "[", "ContextQ", "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"ContextQ", "[", "name_", "]"}], ":=", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Length", "[", 
+        RowBox[{"Names", "[", 
+         RowBox[{
+          RowBox[{"ToString", "[", "name", "]"}], "<>", "\"\<`*\>\""}], "]"}],
+         "]"}], "\[Equal]", "0"}], ",", "False", ",", "True"}], "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"ContextQ", "::", "usage"}], "=", 
+     "\"\<ContextQ[name_]: Return True if name is a context (has sub \
+expressions 'name`...').\>\""}], ";"}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"ContextQ",
+ CellLabel->
+  "In[261]:=",ExpressionUUID->"65760726-aa5f-4b7c-af05-fec6d302c502"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"GetSubContexts", " ", "|", " ", 
+    RowBox[{"v1", ".0"}], " ", "|", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Extract", " ", "possible", " ", "sub", " ", 
+       RowBox[{"contexts", " ", "'"}], "name`", "*", "`"}], "..."}], "'"}]}], 
+   " ", " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"ClearAll", "[", "GetSubContexts", "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Options", "[", "GetSubContexts", "]"}], "=", 
+     RowBox[{"{", "\n", "\t", 
+      RowBox[{"Depth", "\[Rule]", "10"}], "\n", "}"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"GetSubContexts", "[", "name_", "]"}], ":=", 
+    RowBox[{"Block", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"names", "=", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"ToString", "[", "name", "]"}], "<>", "#"}], ")"}], 
+           "&"}], "/@", 
+          RowBox[{"Array", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"StringJoin", "@@", 
+              RowBox[{"ConstantArray", "[", 
+               RowBox[{"\"\<`*\>\"", ",", "#"}], "]"}]}], "&"}], ",", 
+            RowBox[{"LookupOption", "[", 
+             RowBox[{"GetSubContexts", ",", "Depth", ",", "10"}], "]"}]}], 
+           "]"}]}], ")"}]}], "}"}], ",", "\[IndentingNewLine]", "\t", 
+      RowBox[{
+       RowBox[{"StringReplace", "[", 
+        RowBox[{
+         RowBox[{"Flatten", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Names", "[", "#", "]"}], "&"}], "/@", "names"}], "]"}], 
+         ",", 
+         RowBox[{
+          RowBox[{"RegularExpression", "[", "\"\<(.*)`(.*[^`])\>\"", "]"}], 
+          "->", "\"\<$1`\>\""}]}], "]"}], "//", "DeleteDuplicates"}]}], "\n", 
+     "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"GetSubContexts", "::", "usage"}], "=", 
+     "\"\<GetSubContexts[name_]: Extract possible sub contexts 'name`*`...' \
+and return '{}' if name is not a context.\>\""}], ";"}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"GetSubContexts",
+ CellLabel->
+  "In[264]:=",ExpressionUUID->"5c4f3af8-9e1d-4869-8f6a-ed0271d49e0c"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"GetDistributedContexts", " ", "|", " ", 
+    RowBox[{"v1", ".0"}], " ", "|", " ", 
+    RowBox[{"Return", " ", "$DistributedContexts"}]}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"ClearAll", "[", "GetDistributedContexts", "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"GetDistributedContexts", "[", "]"}], ":=", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"ListQ", "[", "$DistributedContexts", "]"}], "=!=", "True"}], 
+      ",", 
+      RowBox[{"{", "$Context", "}"}], ",", "$DistributedContexts"}], "]"}]}], 
+   "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"GetDistributedContexts", "::", "usage"}], "=", 
+     "\"\<GetDistributedContexts[]: Return $DistributedContexts if \
+$DistributedContexts is a list and {$Context} if its not a list.\>\""}], 
+    ";"}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"GetDistributedContexts",
+ CellLabel->
+  "In[268]:=",ExpressionUUID->"f88ba8b5-7806-4ada-bf8d-072986fe8ff3"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"AddToDistributedContexts", " ", "|", " ", 
+    RowBox[{"v1", ".0"}], " ", "|", " ", 
+    RowBox[{"Add", " ", "name", 
+     RowBox[{"(", "s", ")"}], " ", "to", " ", "$DistributedContexts"}]}], " ",
+    "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"ClearAll", "[", "AddToDistributedContexts", "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"AddToDistributedContexts", "[", 
+     RowBox[{"name_String", "/;", 
+      RowBox[{"StringMatchQ", "[", 
+       RowBox[{"name", ",", 
+        RowBox[{"RegularExpression", "[", "\"\<(.*)`\>\"", "]"}]}], "]"}]}], 
+     "]"}], ":=", 
+    RowBox[{"With", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"contexts", "=", 
+        RowBox[{"DeleteDuplicates", "@", 
+         RowBox[{"Join", "[", 
+          RowBox[{
+           RowBox[{"{", "}"}], ",", 
+           RowBox[{"GetDistributedContexts", "[", "]"}], ",", 
+           RowBox[{"{", "name", "}"}]}], "]"}]}]}], "}"}], ",", 
+      RowBox[{
+       RowBox[{"$DistributedContexts", "=", "contexts"}], ";", 
+       RowBox[{"Return", "[", "contexts", "]"}]}]}], "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{"AddToDistributedContexts", "[", 
+     RowBox[{"names_", "/;", 
+      RowBox[{"VectorQ", "[", 
+       RowBox[{"names", ",", 
+        RowBox[{
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"StringQ", "[", "#", "]"}], ",", 
+           RowBox[{"StringMatchQ", "[", 
+            RowBox[{"#", ",", 
+             RowBox[{"RegularExpression", "[", "\"\<(.*)`\>\"", "]"}]}], 
+            "]"}], ",", "False"}], "]"}], "&"}]}], "]"}]}], "]"}], ":=", 
+    RowBox[{"With", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"contexts", "=", 
+        RowBox[{"DeleteDuplicates", "@", 
+         RowBox[{"Join", "[", 
+          RowBox[{
+           RowBox[{"{", "}"}], ",", 
+           RowBox[{"GetDistributedContexts", "[", "]"}], ",", "names"}], 
+          "]"}]}]}], "}"}], ",", 
+      RowBox[{
+       RowBox[{"$DistributedContexts", "=", "contexts"}], ";", 
+       RowBox[{"Return", "[", "contexts", "]"}]}]}], "]"}]}], "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"AddToDistributedContexts", "[", 
+      RowBox[{"names_List", ",", 
+       RowBox[{"includeSubContexts_", ":", "True"}]}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"AddToDistributedContexts", "[", 
+        RowBox[{"#", ",", "includeSubContexts"}], "]"}], "&"}], "/@", 
+      "names"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"AddToDistributedContexts", "[", 
+     RowBox[{"name_", ",", 
+      RowBox[{"includeSubContexts_", ":", "True"}]}], "]"}], ":=", 
+    RowBox[{"With", "[", 
+     RowBox[{
+      RowBox[{"{", "\n", "\t", 
+       RowBox[{"contexts", "=", 
+        RowBox[{"If", "[", 
+         RowBox[{"includeSubContexts", ",", 
+          RowBox[{"GetSubContexts", "[", "name", "]"}], ",", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"ContextQ", "[", "name", "]"}], ",", 
+            RowBox[{"{", "name", "}"}], ",", 
+            RowBox[{"{", "}"}]}], "]"}]}], "]"}]}], "\n", "}"}], ",", "\n", 
+      "\t", "\n", "\t", 
+      RowBox[{
+       RowBox[{"$DistributedContexts", "=", 
+        RowBox[{
+         RowBox[{"Join", "[", 
+          RowBox[{
+           RowBox[{"GetDistributedContexts", "[", "]"}], ",", "contexts"}], 
+          "]"}], "//", "DeleteDuplicates"}]}], ";", "\t", "\n", "\t", 
+       RowBox[{"Return", "[", "contexts", "]"}]}]}], "\n", "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"AddToDistributedContexts", "::", "usage"}], "=", 
+     "\"\<AddToDistributedContexts[name_,OptionsPattern[],includeSubContexts_:\
+True]:\\\nAdd name to $DistributedContexts if name is a context and include \
+sub contexts if includeSubContexts=True using GetSubContexts[...].\>\""}], 
+    ";"}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"AddToDistributedContexts",
+ CellLabel->"In[271]:=",ExpressionUUID->"b34b7e5b-509a-4524-aad2-f7c9e31175b8"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Type checks", \
+"Subsubsection",ExpressionUUID->"46c3aa9f-e7ba-412f-bc2f-e0c906983458"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"RuleQ", " ", "|", " ", 
+    RowBox[{"v1", ".0"}], " ", "|"}], "  ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"RuleQ", "[", "x_", "]"}], ":=", 
+    RowBox[{
+     RowBox[{"VectorQ", "[", 
+      RowBox[{"x", ",", 
+       RowBox[{
+        RowBox[{"MemberQ", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"Rule", ",", "RuleDelayed"}], "}"}], ",", 
+          RowBox[{"Head", "[", "#", "]"}]}], "]"}], "&"}]}], "]"}], "||", 
+     RowBox[{"MemberQ", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"Rule", ",", "RuleDelayed"}], "}"}], ",", 
+       RowBox[{"Head", "[", "x", "]"}]}], "]"}]}]}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"RuleQ", "::", "usage"}], "=", 
+     "\"\<RuleQ[x_]: False except iff x is a list or a single element of Head \
+Rule or RuleDelayed.\>\""}], ";"}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"RuleQ",
+ CellLabel->
+  "In[277]:=",ExpressionUUID->"649f9c4e-d45b-4c6b-a60d-572dd06874dc"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"NonNegativeIntegerQ", " ", "|", " ", 
+    RowBox[{"v1", ".0"}], " ", "|"}], "  ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"NonNegativeIntegerQ", "[", "x_", "]"}], ":=", 
+    RowBox[{
+     RowBox[{"Element", "[", 
+      RowBox[{"x", ",", "NonNegativeIntegers"}], "]"}], "&&", 
+     RowBox[{"UnsameQ", "[", 
+      RowBox[{
+       RowBox[{"Head", "[", "x", "]"}], ",", "List"}], "]"}]}]}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"NonNegativeIntegerQ", "::", "usage"}], "=", 
+     "\"\<NonNegativeIntegerQ[x_]: False except iff x is a single non \
+negative integer.\>\""}], ";"}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"NonNegativeIntegerQ",
+ CellLabel->
+  "In[279]:=",ExpressionUUID->"e8c683a2-36ee-450e-9972-0e091d374793"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"PositiveIntegerQ", " ", "|", " ", 
+    RowBox[{"v1", ".0"}], " ", "|"}], "  ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"PositiveIntegerQ", "[", "x_", "]"}], ":=", 
+    RowBox[{
+     RowBox[{"NonNegativeIntegerQ", "[", "x", "]"}], "&&", 
+     RowBox[{"x", ">", "0"}]}]}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"PositiveIntegerQ", "::", "usage"}], "=", 
+     "\"\<PositiveIntegerQ[x_]: False except iff x is a single positive \
+integer.\>\""}], ";"}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"PositiveIntegerQ",
+ CellLabel->"In[281]:=",ExpressionUUID->"a5e4a179-0130-4cc1-8a94-858a13fe37b7"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Options, Attributes, Information and VerificationTest", \
+"Subsubsection",ExpressionUUID->"4f4a85a1-3068-4e93-b68c-30d3f8a4bf26"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"LookupOption", " ", "|", " ", 
+    RowBox[{"v1", ".0"}], " ", "|", "  ", 
+    RowBox[{"Lookup", " ", "the", " ", "option", " ", 
+     RowBox[{"value", " ", "'"}], 
+     RowBox[{"option", "'"}]}]}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"LookupOption", "[", 
+     RowBox[{"x_", ",", "option_"}], "]"}], ":=", 
+    RowBox[{"Lookup", "[", 
+     RowBox[{
+      RowBox[{"Options", "[", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Head", "[", "x", "]"}], "=!=", "Symbol"}], ",", 
+         RowBox[{"Head", "[", "x", "]"}], ",", "x"}], "]"}], "]"}], ",", 
+      "option"}], "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{"LookupOption", "[", 
+     RowBox[{"x_", ",", "option_", ",", "default_"}], "]"}], ":=", 
+    RowBox[{"Lookup", "[", 
+     RowBox[{
+      RowBox[{"Options", "[", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Head", "[", "x", "]"}], "=!=", "Symbol"}], ",", 
+         RowBox[{"Head", "[", "x", "]"}], ",", "x"}], "]"}], "]"}], ",", 
+      "option", ",", "default"}], "]"}]}], "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"LookupOption", "::", "usage"}], "=", 
+     "\"\<LookupOption[x_,option_String]: Lookup the option value 'option' in \
+the options attached to x or its head (if Head[x]===Symbol).\\n\\\n\
+LookupOption[x_,option_String,default_]: Use the value default if 'option' is \
+not found attached to x.\>\""}], ";"}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"LookupOption",
+ CellLabel->
+  "In[283]:=",ExpressionUUID->"4684748f-e84b-4c19-a4dc-4239a3e26f3c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"AddOptions", " ", "|", " ", 
+    RowBox[{"v1", ".0"}], " ", "|", "  ", 
+    RowBox[{
+    "Add", " ", "Option", " ", "values", " ", "to", " ", "a", " ", 
+     "symbol"}]}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"AddOptions", "[", 
+      RowBox[{"x_", ",", "option_Rule"}], "]"}], ":=", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"MemberQ", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Options", "[", "x", "]"}], "/.", 
+          RowBox[{
+           RowBox[{"Rule", "[", 
+            RowBox[{"a_", ",", "b_"}], "]"}], ":>", "a"}]}], ",", 
+         RowBox[{"option", "[", 
+          RowBox[{"[", "1", "]"}], "]"}]}], "]"}], ",", 
+       RowBox[{"SetOptions", "[", 
+        RowBox[{"x", ",", "option"}], "]"}], ",", 
+       RowBox[{
+        RowBox[{"Options", "[", "x", "]"}], "=", 
+        RowBox[{"Join", "[", 
+         RowBox[{
+          RowBox[{"Options", "[", "x", "]"}], ",", 
+          RowBox[{"{", "option", "}"}]}], "]"}]}]}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"AddOptions", "[", 
+      RowBox[{"x_", ",", "option_List"}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"AddOptions", "[", 
+        RowBox[{"x", ",", "#"}], "]"}], "&"}], "/@", "option"}]}], ";"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"AddOptions", "[", 
+     RowBox[{"x_", ",", "option__"}], "]"}], ":=", 
+    RowBox[{"AddOptions", "[", 
+     RowBox[{"x", ",", 
+      RowBox[{"{", "option", "}"}]}], "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{"LookupOption", "::", "usage"}], "=", 
+    "\"\<AddOptions[x_,option_Rule]: Adds option to the list of Options[x].\>\
+\""}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"AddOptions",
+ CellLabel->
+  "In[286]:=",ExpressionUUID->"a854f40c-5225-4632-b1fe-29daf0ca22fb"],
+
+Cell[BoxData["\<\"AddOptions[x_,option_Rule]: Adds option to the list of \
+Options[x].\"\>"], "Output",
+ CellTags->"AddOptions",
+ CellLabel->"Out[289]=",ExpressionUUID->"0fcf2779-369b-4f94-9859-e9cc7d485fe2"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"SetReadProtected", " ", "|", " ", 
+    RowBox[{"v1", ".0"}], " ", "|", "  ", 
+    RowBox[{"Add", " ", "ReadProtected", " ", "to", " ", 
+     RowBox[{"Attributes", "[", "exp", "]"}]}]}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"SetReadProtected", "[", "exp_", "]"}], ":=", 
+    RowBox[{"With", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"att", "=", 
+        RowBox[{"DeleteDuplicates", "[", 
+         RowBox[{
+          RowBox[{"Attributes", "[", "exp", "]"}], "~", "Join", "~", 
+          RowBox[{"{", "ReadProtected", "}"}]}], "]"}]}], "}"}], ",", 
+      RowBox[{"SetAttributes", "[", 
+       RowBox[{"exp", ",", "att"}], "]"}]}], "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"SetReadProtected", "::", "usage"}], "=", 
+     "\"\<SetReadProtected[exp_]: If not already set add ReadProtected to \
+Attributes[exp].\>\""}], ";"}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"SetReadProtected",
+ CellLabel->
+  "In[290]:=",ExpressionUUID->"a3038084-9bd4-41b8-b99e-9ed092596362"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"PrintDefinitions", " ", "|", " ", 
+    RowBox[{"v1", ".0"}], " ", "|", "  ", 
+    RowBox[{"Wrapper", " ", "for", " ", 
+     RowBox[{"GeneralUtilities`PrintDefinitions", "[", "args", "]"}]}]}], " ",
+    "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"PrintDefinitions", "[", "args___", "]"}], ":=", 
+    RowBox[{"GeneralUtilities`PrintDefinitions", "[", "args", "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"PrintDefinitions", "::", "usage"}], "=", 
+     "\"\<PrintDefinitions[\!\(\*StyleBox[\"args\",FontSlant->\"Italic\"]\)___\
+]:=GeneralUtilities`PrintDefinitions[\!\(\*StyleBox[\"args\",FontSlant->\"\
+Italic\"]\)]\>\""}], ";"}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"PrintDefinitions",
+ CellLabel->
+  "In[292]:=",ExpressionUUID->"dbc15b42-fe7a-4734-ba69-33b37fdbf5cf"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"ShowProperties", " ", "|", " ", 
+    RowBox[{"v1", ".1"}], " ", "|", " ", 
+    RowBox[{
+    "List", " ", "all", " ", "AnnotationKeys", " ", "and", " ", 
+     "Properties"}]}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"ClearAll", "[", "ShowProperties", "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"ShowProperties", "[", "exp_", "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"annotations", ",", "properties"}], "}"}], ",", 
+      "\[IndentingNewLine]", "\t", 
+      RowBox[{
+       RowBox[{"annotations", "=", 
+        RowBox[{"AnnotationKeys", "\[Rule]", 
+         RowBox[{"Quiet", "[", 
+          RowBox[{"Check", "[", 
+           RowBox[{
+            RowBox[{"exp", "//", "AnnotationKeys"}], ",", 
+            RowBox[{"{", "}"}]}], "]"}], "]"}]}]}], ";", 
+       "\[IndentingNewLine]", "\t", 
+       RowBox[{"properties", "=", 
+        RowBox[{"Properties", "\[Rule]", 
+         RowBox[{"Quiet", "[", 
+          RowBox[{"Check", "[", 
+           RowBox[{
+            RowBox[{"exp", "[", "\"\<Properties\>\"", "]"}], ",", 
+            RowBox[{"{", "}"}]}], "]"}], "]"}]}]}], ";", 
+       "\[IndentingNewLine]", "\t", 
+       RowBox[{"{", 
+        RowBox[{"annotations", ",", "properties"}], "}"}]}]}], 
+     "\[IndentingNewLine]", "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"ShowProperties", "::", "usage"}], "=", 
+     "\"\<ShowProperties[exp_]: List all AnnotationKeys and Properties of \
+`exp`.\>\""}], ";"}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"ShowProperties",
+ CellLabel->
+  "In[294]:=",ExpressionUUID->"33a186e7-9b55-442a-9207-7d8c8a361218"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"ToVerificationTest", " ", "|", " ", 
+    RowBox[{"v1", ".0"}], " ", "|", " ", 
+    RowBox[{"Generate", " ", "a", " ", "VerificationTest"}]}], " ", "*)"}], 
+  "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"ClearAll", "[", "ToVerificationTest", "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"ToVerificationTest", "[", "list_List", "]"}], ":=", 
+    RowBox[{"ToVerificationTest", "/@", "list"}]}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"ToVerificationTest", "[", 
+     RowBox[{"{", 
+      RowBox[{"exp_Hold", ",", "res_", ",", 
+       RowBox[{"label_String", ":", "\"\<\>\""}]}], "}"}], "]"}], ":=", 
+    RowBox[{"VerificationTest", "[", 
+     RowBox[{
+      RowBox[{"ReleaseHold", "@", "exp"}], ",", "res", ",", 
+      RowBox[{"TestID", "\[Rule]", "label"}]}], "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{"ToVerificationTest", "[", 
+     RowBox[{"{", 
+      RowBox[{"exp_Hold", ",", "res_", ",", 
+       RowBox[{"label_Style", ":", 
+        RowBox[{"Style", "[", "\"\<\>\"", "]"}]}]}], "}"}], "]"}], ":=", 
+    RowBox[{"VerificationTest", "[", 
+     RowBox[{
+      RowBox[{"ReleaseHold", "@", "exp"}], ",", "res", ",", 
+      RowBox[{"TestID", "\[Rule]", "label"}]}], "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+     "ToVerificationTest", "::", "usage", "::", 
+      "\"\<ToVerificationTest[{exp_Hold,res_,label_String:\>\""}], 
+     "\"\<}]: Generate a VerificationTest for 'exp' with the expected result \
+'res'.\>\""}], ";"}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"ToVerificationTest",
+ CellLabel->"In[297]:=",ExpressionUUID->"ffcce7d4-cd8c-4f9e-b973-bf974cdaf4d3"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Method Setup", \
+"Subsubsection",ExpressionUUID->"19fca44a-1beb-435e-be4a-5f3142197ff5"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"SetupSymbol", " ", "|", " ", 
+    RowBox[{"v1", ".0"}], " ", "|", "  ", 
+    RowBox[{"Boilerplate", " ", "method", " ", "for", " ", 
+     RowBox[{"(", "re", ")"}], "setting", " ", "up", " ", "a", " ", 
+     RowBox[{"Symbol", "/", "Method"}]}]}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"ClearAll", "[", 
+     RowBox[{"SetupSymbol", ",", "SetupSymbols"}], "]"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"SetupSymbol", "//", "Attributes"}], "=", 
+     RowBox[{"{", "HoldAll", "}"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"SetupSymbol", "[", "f_Symbol", "]"}], ":=", 
+     RowBox[{"With", "[", 
+      RowBox[{
+       RowBox[{"{", "}"}], ",", "\n", "\t", 
+       RowBox[{
+        RowBox[{"ClearAll", "[", "f", "]"}], ";"}]}], "\n", "]"}]}], ";"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"SetupSymbol", "[", 
+      RowBox[{"f_Symbol", ",", 
+       RowBox[{"{", "att__", "}"}]}], "]"}], ":=", 
+     RowBox[{"With", "[", 
+      RowBox[{
+       RowBox[{"{", "}"}], ",", "\n", "\t", 
+       RowBox[{
+        RowBox[{"SetupSymbol", "[", "f", "]"}], ";", "\n", "\t", 
+        RowBox[{"EvaluateAll", "@", 
+         RowBox[{"SetAttributes", "[", 
+          RowBox[{"f", ",", "att"}], "]"}]}], ";"}]}], "\n", "]"}]}], ";"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"SetupSymbol", "[", 
+      RowBox[{"f_Symbol", ",", "att_List", ",", "methods_List"}], "]"}], ":=", 
+     RowBox[{"With", "[", 
+      RowBox[{
+       RowBox[{"{", "}"}], ",", "\n", "\t", 
+       RowBox[{
+        RowBox[{"SetupSymbol", "[", 
+         RowBox[{"f", ",", "att"}], "]"}], ";", "\n", "\t", 
+        RowBox[{"EvaluateAll", "@", 
+         RowBox[{"Through", "[", 
+          RowBox[{"methods", "[", "f", "]"}], "]"}]}], ";"}]}], "\n", "]"}]}],
+     ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"SetupSymbol", "[", 
+      RowBox[{"f_Symbol", ",", 
+       RowBox[{"{", "att___", "}"}], ",", 
+       RowBox[{"{", "methods___", "}"}], ",", "usage_String"}], "]"}], ":=", 
+     RowBox[{"With", "[", 
+      RowBox[{
+       RowBox[{"{", "}"}], ",", "\n", "\t", 
+       RowBox[{
+        RowBox[{"SetupSymbol", "[", 
+         RowBox[{"f", ",", "att", ",", "methods"}], "]"}], ";", "\n", "\t", 
+        RowBox[{
+         RowBox[{"f", "::", "usage"}], "=", "usage"}], ";"}]}], "\n", "]"}]}],
+     ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"SetupSymbol", "::", "usage"}], "=", 
+     "\"\<SetupSymbol[...]: Boilerplate method for (re)setting up a \
+Symbol/Method.\>\""}], ";"}], "\[IndentingNewLine]", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"SetupSymbols", "//", "Attributes"}], "=", 
+     RowBox[{"{", "HoldAll", "}"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"SetupSymbols", "[", "symbols_List", "]"}], ":=", 
+     RowBox[{"Map", "[", 
+      RowBox[{"SetupSymbol", ",", "symbols"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"SetupSymbols", "[", 
+      RowBox[{"symbols_List", ",", 
+       RowBox[{"{", "att___", "}"}]}], "]"}], ":=", 
+     RowBox[{"Map", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"SetupSymbol", "[", 
+         RowBox[{"#", ",", 
+          RowBox[{"{", "att", "}"}]}], "]"}], "&"}], ",", "symbols"}], 
+      "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"SetupSymbols", "::", "usage"}], "=", 
+     "\"\<SetupSymbols[...]: Boilerplate method for (re)setting up multiple \
+Symbols/Methods.\>\""}], ";"}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"SetupSymbol",
+ CellLabel->"In[302]:=",ExpressionUUID->"fba457d3-ef30-4829-b093-87043d03955a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["DebugPrint and Timing", \
+"Subsubsection",ExpressionUUID->"9acbc361-877f-4291-a5ee-4aa786d431b6"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"DebugPrint", " ", "|", " ", 
+    RowBox[{"v1", ".0"}], " ", "|", "  ", 
+    RowBox[{"Flexible", " ", "DebugPrint", " ", "Method"}]}], " ", "*)"}], 
+  "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Through", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"ClearAll", ",", "SetReadProtected"}], "}"}], "[", 
+      "DebugPrint", "]"}], "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Options", "[", "DebugPrint", "]"}], "=", 
+     RowBox[{"{", "\n", "\t", 
+      RowBox[{
+       RowBox[{"\"\<LastTime\>\"", "\[Rule]", "0"}], ",", "\n", "\t", 
+       RowBox[{"\"\<MessageCount\>\"", "\[Rule]", "0"}], ",", "\n", "\t", 
+       RowBox[{"\"\<MessageLimit\>\"", "\[Rule]", "20"}], ",", "\n", "\t", 
+       RowBox[{"\"\<MessageLimitTime\>\"", "\[Rule]", "1"}]}], "\n", "}"}]}], 
+    ";"}], "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"DebugPrint", "[", "]"}], "[", "exp___", "]"}], ":=", 
+    RowBox[{
+     RowBox[{"DebugPrint", "[", 
+      RowBox[{"True", ",", 
+       RowBox[{"{", "}"}]}], "]"}], "[", "exp", "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"DebugPrint", "[", "printQ_", "]"}], "[", "exp__", "]"}], ":=", 
+    RowBox[{
+     RowBox[{"DebugPrint", "[", 
+      RowBox[{"printQ", ",", 
+       RowBox[{"{", "}"}]}], "]"}], "[", "exp", "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"DebugPrint", "[", 
+       RowBox[{"printQ_", ",", "style_"}], "]"}], "[", "exp__", "]"}], "/;", 
+     RowBox[{"BooleanQ", "[", "printQ", "]"}]}], ":=", 
+    RowBox[{
+     RowBox[{"DebugPrint", "[", 
+      RowBox[{"printQ", ",", "style"}], "]"}], "[", 
+     RowBox[{"{", "exp", "}"}], "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"DebugPrint", "[", 
+      RowBox[{"printQ_", ",", "style_"}], "]"}], "[", "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", "}"}], ",", 
+      RowBox[{"0", ";"}]}], "]"}]}], "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"DebugPrint", "[", 
+        RowBox[{"printQ_", ",", "style_"}], "]"}], "[", "exp_List", "]"}], "/;", 
+      RowBox[{"BooleanQ", "[", "printQ", "]"}]}], ":=", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"If", "[", 
+        RowBox[{"printQ", ",", "\n", "\t", 
+         RowBox[{
+          RowBox[{"With", "[", 
+           RowBox[{
+            RowBox[{"{", "\n", "\t\t", 
+             RowBox[{
+              RowBox[{"t", "=", 
+               RowBox[{"AbsoluteTime", "[", "]"}]}], ",", "\n", "\t\t", 
+              RowBox[{"\[CapitalDelta]t", "=", 
+               RowBox[{
+                RowBox[{"AbsoluteTime", "[", "]"}], "-", 
+                RowBox[{"OptionValue", "[", 
+                 RowBox[{"DebugPrint", ",", "\"\<LastTime\>\""}], "]"}]}]}], 
+              ",", "\n", "\t\t", 
+              RowBox[{"T", "=", 
+               RowBox[{"OptionValue", "[", 
+                RowBox[{"DebugPrint", ",", "\"\<MessageLimitTime\>\""}], 
+                "]"}]}], ",", "\n", "\t\t", 
+              RowBox[{"n", "=", 
+               RowBox[{"OptionValue", "[", 
+                RowBox[{"DebugPrint", ",", "\"\<MessageLimit\>\""}], 
+                "]"}]}]}], "\n", "\t", "}"}], ",", "\n", "\t\t", 
+            RowBox[{
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"\[CapitalDelta]t", ">", "T"}], ",", "\n", "\t\t\t", 
+               RowBox[{"SetOptions", "[", 
+                RowBox[{"DebugPrint", ",", 
+                 RowBox[{"\"\<MessageCount\>\"", "\[Rule]", "0"}]}], "]"}]}], 
+              RowBox[{"(*", " ", 
+               RowBox[{
+               "Reset", " ", "DebugPrint", " ", "Option", " ", 
+                "\"\<MessageCount\>\""}], " ", "*)"}], "\n", "\t\t", "]"}], 
+             ";", "\n", "\t\t", 
+             RowBox[{"SetOptions", "[", 
+              RowBox[{"DebugPrint", ",", 
+               RowBox[{"\"\<LastTime\>\"", "\[Rule]", "t"}], ",", 
+               RowBox[{"\"\<MessageCount\>\"", "\[Rule]", 
+                RowBox[{
+                 RowBox[{"OptionValue", "[", 
+                  RowBox[{"DebugPrint", ",", "\"\<MessageCount\>\""}], "]"}], 
+                 "+", "1"}]}]}], "]"}], ";", 
+             RowBox[{"(*", " ", 
+              RowBox[{
+              "Iterate", " ", "DebugPrint", " ", "Options", " ", 
+               "\"\<LastTime\>\"", " ", "and", " ", "\"\<MessageCount\>\""}], 
+              " ", "*)"}], "\n", "\t", "\n", "\t\t", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"OptionValue", "[", 
+                 RowBox[{"DebugPrint", ",", "\"\<MessageCount\>\""}], "]"}], 
+                ">", "n"}], ",", "\n", "\t\t\t", 
+               RowBox[{
+                RowBox[{"If", "[", 
+                 RowBox[{
+                  RowBox[{"!", 
+                   RowBox[{"ChoiceDialog", "[", 
+                    RowBox[{
+                    RowBox[{"\"\<Warning: MessageLimit (\>\"", "<>", 
+                    RowBox[{"ToString", "[", "n", "]"}], "<>", 
+                    "\"\<) in MessageLimitTime (\>\"", "<>", 
+                    RowBox[{"ToString", "[", "T", "]"}], "<>", 
+                    "\"\< s) reached!\>\""}], ",", "\n", "\t\t\t\t\t", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    "\"\<Continue Evaluation\>\"", "\[Rule]", "True"}], ",", 
+                    RowBox[{
+                    "\"\<Abort Evaluation\>\"", "\[Rule]", "False"}]}], "}"}],
+                     ",", 
+                    RowBox[{
+                    "WindowTitle", "\[Rule]", 
+                    "\"\<DebugPrint Warning\>\""}]}], "\n", "\t\t\t\t", 
+                    "]"}]}], ",", "\n", "\t\t\t\t", 
+                  RowBox[{
+                   RowBox[{"SetOptions", "[", 
+                    RowBox[{"DebugPrint", ",", 
+                    RowBox[{"\"\<MessageCount\>\"", "\[Rule]", "0"}]}], "]"}],
+                    ";", "\n", "\t\t\t\t", 
+                   RowBox[{"Abort", "[", "]"}], ";"}]}], "\n", "\t\t\t", 
+                 "]"}], ";"}]}], "\n", "\t\t", "]"}], ";", "\n", "\t\t", 
+             RowBox[{"Print", "[", 
+              RowBox[{"Style", "[", 
+               RowBox[{
+                RowBox[{"Row", "[", 
+                 RowBox[{
+                  RowBox[{"exp", "~", "Join", "~", 
+                   RowBox[{"{", 
+                    RowBox[{"\"\< in \[CapitalDelta]t= \>\"", ",", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"\[CapitalDelta]t", ">", 
+                    RowBox[{"10", "^", "9"}]}], ",", "0", ",", 
+                    "\[CapitalDelta]t"}], "]"}]}], "}"}]}], ",", 
+                  "\"\<\[ThinSpace]\>\""}], "]"}], ",", "style"}], "]"}], 
+              "]"}]}]}], "\n", "\t", "]"}], ";"}]}], "\n", "]"}]}], "]"}]}], 
+    ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"DebugPrint", "[", 
+      RowBox[{"printQ_", ",", "style___"}], "]"}], "[", "exp__", "]"}], ":=", 
+    RowBox[{
+     RowBox[{"DebugPrint", "[", 
+      RowBox[{
+       RowBox[{"LookupOption", "[", 
+        RowBox[{"printQ", ",", "\"\<DebugPrint\>\"", ",", "False"}], "]"}], 
+       ",", "style"}], "]"}], "[", 
+     RowBox[{"{", 
+      RowBox[{"printQ", ",", "\"\<: \>\"", ",", "exp"}], "}"}], "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"DebugPrint", "[", 
+      RowBox[{"printQ_", ",", "style___"}], "]"}], "[", "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", "}"}], ",", 
+      RowBox[{"0", ";"}]}], "]"}]}], "\n", "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"DebugPrint", "::", "usage"}], "=", 
+     "\"\<DebugPrint[printQ_:True,style_:{}][exp_]: If printQ==True \
+Print[Style[exp,style]]\\n\\\nDebugPrint[printQ_:True,style_:{}][exp_List]: \
+If printQ==True Print[Style[Row[exp,\\\" \\\"],style]]\\n\\\nFor non boolean \
+arguments for printQ LookupOption[printQ,\\\"DebugPrint\\\",False] is used to \
+generate an bool\\\nand falling back to the two boolean versions of the \
+function.\>\""}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "Enable", " ", "Printing", " ", "for", " ", "given", " ", "symbol", 
+     RowBox[{"(", "s", ")"}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"Through", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"ClearAll", ",", "SetReadProtected"}], "}"}], "[", 
+      "DebugPrintOn", "]"}], "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"DebugPrintOn", "[", "head__", "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", "}"}], ",", 
+      RowBox[{
+       RowBox[{"DebugPrintOn", "/@", 
+        RowBox[{"{", "head", "}"}]}], ";"}]}], "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{"DebugPrintOn", "[", "head_List", "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", "}"}], ",", 
+      RowBox[{
+       RowBox[{"DebugPrintOn", "/@", "head"}], ";"}]}], "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{"DebugPrintOn", "[", "head_", "]"}], ":=", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"MissingQ", "[", 
+       RowBox[{"LookupOption", "[", 
+        RowBox[{"head", ",", "\"\<DebugPrint\>\""}], "]"}], "]"}], ",", "\n", 
+      "\t", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Options", "[", "head", "]"}], "=", 
+        RowBox[{"Append", "[", 
+         RowBox[{
+          RowBox[{"Options", "[", "head", "]"}], ",", 
+          RowBox[{"\"\<DebugPrint\>\"", "\[Rule]", "True"}]}], "]"}]}], ";"}],
+       ",", "\n", "\t", 
+      RowBox[{
+       RowBox[{"SetOptions", "[", 
+        RowBox[{"head", ",", 
+         RowBox[{"\"\<DebugPrint\>\"", "\[Rule]", "True"}]}], "]"}], ";"}]}], 
+     "\n", "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"DebugPrintOn", "::", "usage"}], "=", 
+     "\"\<DebugPrintOn[head_]: Set or if necessary add \
+\\\"DebugPrint\\\"->True to Options[head].\\\nIf head is a list or has \
+multiple arguments (head__) apply DebugPrintOn on eacht element of \
+head.\>\""}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "Disable", " ", "Printing", " ", "for", " ", "given", " ", "symbol", 
+     RowBox[{"(", "s", ")"}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"Through", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"ClearAll", ",", "SetReadProtected"}], "}"}], "[", 
+      "DebugPrintOff", "]"}], "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"DebugPrintOff", "[", "head__", "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", "}"}], ",", 
+      RowBox[{
+       RowBox[{"DebugPrintOff", "/@", 
+        RowBox[{"{", "head", "}"}]}], ";"}]}], "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{"DebugPrintOff", "[", "head_List", "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", "}"}], ",", 
+      RowBox[{
+       RowBox[{"DebugPrintOff", "/@", "head"}], ";"}]}], "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{"DebugPrintOff", "[", "head_", "]"}], ":=", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"!", 
+       RowBox[{"MissingQ", "[", 
+        RowBox[{"LookupOption", "[", 
+         RowBox[{"head", ",", "\"\<DebugPrint\>\""}], "]"}], "]"}]}], ",", 
+      "\n", "\t", 
+      RowBox[{
+       RowBox[{"SetOptions", "[", 
+        RowBox[{"head", ",", 
+         RowBox[{"\"\<DebugPrint\>\"", "\[Rule]", "False"}]}], "]"}], ";"}]}],
+      "\n", "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"DebugPrintOff", "::", "usage"}], "=", 
+     "\"\<Set \\\"DebugPrint\\\"->False in Options[head] iff \\\"DebugPrint\\\
+\" is in Options[head].\\\nIf head is a list or has multiple arguments \
+(head__) apply DebugPrintOn on eacht element of head.\>\""}], 
+    ";"}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"DebugPrint",
+ CellLabel->
+  "In[313]:=",ExpressionUUID->"cf4e4e58-f8cc-4f82-acfa-feca1d52c1ac"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"AbsoluteTimer", " ", "|", " ", 
+    RowBox[{"v1", ".0"}], " ", "|"}], "  ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"Options", "[", "AbsoluteTimer", "]"}], "=", 
+     RowBox[{"{", 
+      RowBox[{"\"\<t\>\"", "\[Rule]", "0"}], "}"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"AbsoluteTimer", "[", "]"}], ":=", 
+    RowBox[{"OptionValue", "[", 
+     RowBox[{"AbsoluteTimer", ",", "\"\<t\>\""}], "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{"StartAbsoluteTimer", "[", "]"}], ":=", 
+    RowBox[{"With", "[", 
+     RowBox[{
+      RowBox[{"{", "}"}], ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Options", "[", "AbsoluteTimer", "]"}], "=", 
+        RowBox[{"{", 
+         RowBox[{"\"\<t\>\"", "\[Rule]", 
+          RowBox[{"-", 
+           RowBox[{"AbsoluteTime", "[", "]"}]}]}], "}"}]}], ";"}]}], "]"}]}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"StopAbsoluteTimer", "[", "]"}], ":=", 
+    RowBox[{"With", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"t", "=", 
+        RowBox[{"OptionValue", "[", 
+         RowBox[{"AbsoluteTimer", ",", "\"\<t\>\""}], "]"}]}], "}"}], ",", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Options", "[", "AbsoluteTimer", "]"}], "=", 
+        RowBox[{"{", 
+         RowBox[{"\"\<t\>\"", "\[Rule]", 
+          RowBox[{"t", "+", 
+           RowBox[{"AbsoluteTime", "[", "]"}]}]}], "}"}]}], ";", 
+       RowBox[{"AbsoluteTimer", "[", "]"}]}]}], "]"}]}], "\n", "\n", 
+   RowBox[{
+    RowBox[{"StartAbsoluteTimer", "[", "]"}], ";"}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"AbsoluteTimer",
+ CellLabel->"In[333]:=",ExpressionUUID->"4fd50964-e07a-4bfc-a368-4d7a62f7a11f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["GetCodePackage", \
+"Subsubsection",ExpressionUUID->"5e7a9c2e-a482-46f0-832d-ed8d23682d33"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"GetCodePackage", " ", "|", " ", 
+    RowBox[{"v1", ".1"}], " ", "|", " ", 
+    RowBox[{
+    "Get", " ", "CodePackage", " ", "Cells", " ", "from", " ", "a", " ", 
+     "notebook"}]}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"GetCodePackage", "[", 
+     RowBox[{"file_String", ",", 
+      RowBox[{"tags_", ":", 
+       RowBox[{"{", "}"}]}], ",", 
+      RowBox[{"groupQ_", ":", "True"}]}], "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"nb", ",", "cells"}], "}"}], ",", "\n", "\t", 
+      RowBox[{
+       RowBox[{"nb", "=", 
+        RowBox[{"NotebookOpen", "[", 
+         RowBox[{
+          RowBox[{"AbsoluteFileName", "[", "file", "]"}], ",", 
+          RowBox[{"Visible", "->", "False"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", "\t", 
+       RowBox[{"NotebookFind", "[", 
+        RowBox[{
+        "nb", ",", "\"\<CodePackage\>\"", ",", "All", ",", "CellStyle"}], 
+        "]"}], ";", "\[IndentingNewLine]", "\t", 
+       RowBox[{"cells", "=", 
+        RowBox[{"NotebookRead", "[", "nb", "]"}]}], ";", "\n", "\t", 
+       RowBox[{"cells", "=", 
+        RowBox[{"Flatten", "[", 
+         RowBox[{"{", "cells", "}"}], "]"}]}], ";", "\n", "\t", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"tags", "=!=", 
+          RowBox[{"{", "}"}]}], ",", "\n", "\t\t", 
+         RowBox[{
+          RowBox[{"cells", "=", 
+           RowBox[{"Select", "[", 
+            RowBox[{"cells", ",", 
+             RowBox[{
+              RowBox[{"ContainsAny", "[", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"#", "/.", 
+                   RowBox[{
+                    RowBox[{"Cell", "[", 
+                    RowBox[{"x___", ",", 
+                    RowBox[{"CellTags", "\[Rule]", "t_"}], ",", "y___"}], 
+                    "]"}], ":>", "t"}]}], "}"}], "//", "Flatten"}], ",", 
+                "tags"}], "]"}], "&"}]}], "]"}]}], ";"}]}], "\n", "\t", "]"}],
+        ";", "\t", "\[IndentingNewLine]", "\t", 
+       RowBox[{"NotebookClose", "[", "nb", "]"}], ";", "\n", "\t", "\n", "\t", 
+       RowBox[{"CellPrint", "[", 
+        RowBox[{"Cell", "[", 
+         RowBox[{
+          RowBox[{"BoxData", "[", " ", 
+           RowBox[{"RowBox", "[", 
+            RowBox[{"{", "\n", "\t\t", 
+             RowBox[{"\"\<(** \>\"", "<>", "file", "<>", "\"\< from \>\"", "<>", 
+              RowBox[{"DateString", "[", "\"\<ISODateTime\>\"", "]"}], "<>", 
+              "\"\< imported using GetCodePackage[\>\"", "<>", "file", "<>", 
+              "\"\<,\>\"", "<>", 
+              RowBox[{"ToString", "@", "tags"}], "<>", "\"\<,\>\"", "<>", 
+              RowBox[{"ToString", "@", "groupQ"}], "<>", "\"\<] **)\>\""}], 
+             "\n", "\t", "}"}], "]"}], "]"}], ",", " ", 
+          "\"\<CodePackage\>\""}], "]"}], "]"}], ";", "\n", "\t", 
+       RowBox[{"CellPrint", "[", 
+        RowBox[{"cells", "/.", 
+         RowBox[{
+          RowBox[{"Cell", "[", "x__", "]"}], ":>", 
+          RowBox[{"Cell", "[", 
+           RowBox[{"x", ",", 
+            RowBox[{"GeneratedCell", "->", "False"}], ",", 
+            RowBox[{"CellGroupingRules", "->", 
+             RowBox[{"If", "[", 
+              RowBox[{
+              "groupQ", ",", "\"\<OutputGrouping\>\"", ",", "Inherited"}], 
+              "]"}]}]}], "]"}]}]}], "]"}], ";", "\n", "\t", "\n", "\t", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"$FrontEnd", "=!=", "$Failed"}], ",", "\n", "\t\t", 
+         RowBox[{
+          RowBox[{"SelectionMove", "[", 
+           RowBox[{
+            RowBox[{"EvaluationNotebook", "[", "]"}], ",", "All", ",", 
+            "GeneratedCell"}], "]"}], ";", "\[IndentingNewLine]", "\t\t", 
+          RowBox[{
+          "FrontEndTokenExecute", "[", 
+           "\"\<SelectionCloseUnselectedCells\>\"", "]"}]}]}], "\n", "\t", 
+        "]"}], ";", "\n", "\t", 
+       RowBox[{"NotebookDelete", "[", 
+        RowBox[{"EvaluationCell", "[", "]"}], "]"}]}]}], "\n", "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"GetCodePackage", "::", "usage"}], "=", 
+     "\"\<GetCodePackage[file_String,tags_:{},groupQ_:True]: Get all \
+CodePackage Cells from file and CellPrint them.\>\""}], ";"}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"GetCodePackage",
+ CellLabel->
+  "In[338]:=",ExpressionUUID->"0b1d8110-c3c6-4eb6-9616-cd11d68dbb98"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"EvaluateCodePackage", " ", "|", " ", 
+    RowBox[{"v1", ".0"}], " ", "|", " ", 
+    RowBox[{
+    "Evaluate", " ", "CodePackage", " ", "Cells", " ", "from", " ", "a", " ", 
+     "notebook"}]}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"EvaluateCodePackage", "[", "file_String", "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", "nb", "}"}], ",", "\n", "\t", 
+      RowBox[{
+       RowBox[{"nb", "=", 
+        RowBox[{"NotebookOpen", "[", 
+         RowBox[{
+          RowBox[{"AbsoluteFileName", "[", "file", "]"}], ",", 
+          RowBox[{"Visible", "->", "False"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", "\t", 
+       RowBox[{"NotebookFind", "[", 
+        RowBox[{
+        "nb", ",", "\"\<CodePackage\>\"", ",", "All", ",", "CellStyle"}], 
+        "]"}], ";", "\[IndentingNewLine]", "\t", 
+       RowBox[{"SelectionEvaluate", "[", "nb", "]"}], ";", 
+       "\[IndentingNewLine]", "\t", 
+       RowBox[{"NotebookClose", "[", "nb", "]"}]}]}], "\n", "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"EvaluateCodePackage", "::", "usage"}], "=", 
+     "\"\<GetCodePackage[file_String,tags_:{},groupQ_:True]: Get all \
+CodePackage Cells from file and CellPrint them.\>\""}], ";"}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"EvaluateCodePackage",
+ CellLabel->"In[340]:=",ExpressionUUID->"47b349c0-a9c8-4341-83ab-6fe0948afe76"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["DefinedQ", \
+"Subsubsection",ExpressionUUID->"bb110a63-1ece-4260-996e-aea3b5347d33"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"DefinedQ", " ", "|", " ", 
+     RowBox[{"v1", ".4"}], " ", "|", " ", 
+     RowBox[{
+     "Check", " ", "wether", " ", "a", " ", "symbol", " ", "is", " ", 
+      "defined"}]}], ",", " ", 
+    RowBox[{
+     RowBox[{"i", ".", "e", ".", " ", "has"}], " ", "a", " ", "Value"}], ",", 
+    " ", 
+    RowBox[{"Down", "-"}], ",", " ", 
+    RowBox[{"Up", "="}], ",", " ", 
+    RowBox[{
+     RowBox[{"and", "/", "or"}], " ", 
+     RowBox[{"OwnValues", "."}]}]}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"ClearAll", "[", "DefinedQ", "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"DefinedQ", "[", "symbol_Symbol", "]"}], ":=", 
+    RowBox[{
+     RowBox[{"ValueQ", "[", "symbol", "]"}], "||", 
+     RowBox[{
+      RowBox[{"DownValues", "[", "symbol", "]"}], "=!=", 
+      RowBox[{"{", "}"}]}], "||", 
+     RowBox[{
+      RowBox[{"UpValues", "[", "symbol", "]"}], "=!=", 
+      RowBox[{"{", "}"}]}], "||", 
+     RowBox[{
+      RowBox[{"OwnValues", "[", "symbol", "]"}], "=!=", 
+      RowBox[{"{", "}"}]}]}]}], "\n", 
+   RowBox[{
+    RowBox[{"DefinedQ", "[", "symbol_String", "]"}], ":=", 
+    RowBox[{"Quiet", "[", 
+     RowBox[{
+      RowBox[{"Check", "[", "\n", "\t", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"ValueQ", "[", 
+          RowBox[{"Evaluate", "[", 
+           RowBox[{"Symbol", "[", "symbol", "]"}], "]"}], "]"}], "||", 
+         RowBox[{
+          RowBox[{"DownValues", "[", 
+           RowBox[{"Evaluate", "[", 
+            RowBox[{"Symbol", "[", "symbol", "]"}], "]"}], "]"}], "=!=", 
+          RowBox[{"{", "}"}]}], "||", 
+         RowBox[{
+          RowBox[{"UpValues", "[", 
+           RowBox[{"Evaluate", "[", 
+            RowBox[{"Symbol", "[", "symbol", "]"}], "]"}], "]"}], "=!=", 
+          RowBox[{"{", "}"}]}], "||", 
+         RowBox[{
+          RowBox[{"OwnValues", "[", 
+           RowBox[{"Evaluate", "[", 
+            RowBox[{"Symbol", "[", "symbol", "]"}], "]"}], "]"}], " ", "=!=", 
+          " ", 
+          RowBox[{"{", "}"}]}]}], ",", "\n", "False"}], "]"}], ",", " ", 
+      RowBox[{"Symbol", "::", "sym"}]}], "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{"DefinedQ", "[", "symbols_List", "]"}], ":=", 
+    RowBox[{"And", "@@", 
+     RowBox[{"Map", "[", 
+      RowBox[{"DefinedQ", ",", "symbols"}], "]"}]}]}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"DefinedQ", "::", "usage"}], "=", 
+     "\"\<DefinedQ[symbol_]: Check wether a symbol is defined, i.e. has a \
+Value, Down-, Up=, and/or OwnValues.\>\""}], ";"}]}]}]], "Code",
+ InitializationCell->True,
+ CellTags->"DefinedQ",
+ CellLabel->"In[342]:=",ExpressionUUID->"e4affe46-34f6-41b6-b5c9-e078adbe78a4"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+PrintingStyleEnvironment->"Printout",
+EvaluationCompletionAction->{"ShowTiming"},
+PrintAction->"PrintToNotebook",
+NotebookEventActions:>{"WindowClose" :> If[
+    MemberQ[NB`UUIDs, 
+     ReplaceAll["ExpressionUUID", 
+      NotebookInformation[]]], If[NB`DumpSaveQ === True, 
+      NB`DumpSave[]]; If[NB`DeleteGeneratedCellsQ === True, FrontEndExecute[{
+         FrontEndToken["DeleteGeneratedCells"]}]; Null]; 
+    If[NB`NotebookSave === True, NotebookSave[]; Null]; Null]},
+WindowSize->{1428., 746.25},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+DockedCells->{},
+PrintingCopies->1,
+PrintingStartingPageNumber->1,
+PrintingPageRange->{32000, 32000},
+PageHeaders->{{
+   Cell[
+    TextData[{
+      StyleBox[
+       CounterBox["Page"], "PageNumber"], 
+      StyleBox["/", "PageNumber"], 
+      StyleBox[
+       CounterBox["LastPage", CounterFunction :> Identity], "PageNumber"]}], 
+    "Header", CellMargins -> {{0, Inherited}, {Inherited, Inherited}}], None, 
+   None}, {
+   Cell[
+    TextData[{
+      StyleBox[
+       CounterBox["Page"], "PageNumber"], 
+      StyleBox["/", "PageNumber"], 
+      StyleBox[
+       CounterBox["LastPage", CounterFunction :> Identity], "PageNumber"]}], 
+    "Header", CellMargins -> {{0, Inherited}, {Inherited, Inherited}}], None, 
+   None}},
+PageFooters->{{
+   Cell[
+    TextData[
+     StyleBox["D:\\Github\\Mathematica\\tagged_methods.nb", "FooterText"]], 
+    "Header", CellMargins -> {{0, Inherited}, {Inherited, Inherited}}], None, 
+   Cell[
+    TextData[
+     StyleBox[
+     "2022-12-06T20:30\[FilledSmallSquare] v1.10\[FilledSmallSquare] M. J. \
+Steil\[FilledSmallSquare] msteil@theorie.ikp.physik.tu-darmstadt.de\
+\[FilledSmallSquare] TU Darmstadt", "FooterText"]], "Header", 
+    CellMargins -> {{0, Inherited}, {Inherited, Inherited}}]}, {
+   Cell[
+    TextData[
+     StyleBox["D:\\Github\\Mathematica\\tagged_methods.nb", "FooterText"]], 
+    "Header", CellMargins -> {{0, Inherited}, {Inherited, Inherited}}], None, 
+   Cell[
+    TextData[
+     StyleBox[
+     "2022-12-06T20:30\[FilledSmallSquare] v1.10\[FilledSmallSquare] M. J. \
+Steil\[FilledSmallSquare] msteil@theorie.ikp.physik.tu-darmstadt.de\
+\[FilledSmallSquare] TU Darmstadt", "FooterText"]], "Header", 
+    CellMargins -> {{0, Inherited}, {Inherited, Inherited}}]}},
+PageHeaderLines->{False, False},
+PageFooterLines->{False, False},
+PrintingOptions->{"FacingPages"->True,
+"FirstPageFace"->Right,
+"FirstPageFooter"->True,
+"FirstPageHeader"->True,
+"Magnification"->1,
+"PageSize"->{595.32, 841.92},
+"PaperOrientation"->"Portrait",
+"PaperSize"->{595.32, 841.92},
+"PrintingMargins"->{{28.3465, 28.3465}, {50, 50}}},
+PrivateNotebookOptions->{"FileOutlineCache"->False},
+ShowGroupOpener->False,
+ShowCellTags->True,
+TrackCellChangeTimes->False,
+ShowSyntaxStyles->True,
+Magnification:>1.25 Inherited,
+FrontEndVersion->"13.0 for Microsoft Windows (64-bit) (February 4, 2022)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[StyleDefinitions -> "Default.nb"]], 
+   Cell[
+    CellGroupData[{
+      Cell["Style Environment Names", "Section"], 
+      Cell[
+       StyleData[All, "WorkingDark"], CellInsertionPointCell -> 
+       FEPrivate`FrontEndResource["FEExpressions", "CellInsertionMenu"], 
+       MenuSortingValue -> 1101], 
+      Cell[
+       StyleData[All, "Printout"], PageWidth :> PaperWidth, 
+       CellHorizontalScrolling -> True, 
+       CellLabelMargins -> {{2, Inherited}, {Inherited, Inherited}}, 
+       ShowAutoStyles -> False, ShowAutoSpellCheck -> False, ShowSyntaxStyles -> 
+       False, AutoStyleOptions -> {"HighlightMisspelledWords" -> False}, 
+       ScriptMinSize -> 5, MenuSortingValue -> 1500, 
+       PrivateFontOptions -> {"FontType" -> "Outline"}, Magnification -> 
+       0.5]}, Open]], 
+   Cell[
+    CellGroupData[{
+      Cell[
+      "Notebook Style", "Section", 
+       CellChangeTimes -> {3.8070389616379795`*^9}], 
+      Cell[
+       CellGroupData[{
+         Cell[
+          StyleData["Notebook"]], 
+         Cell[
+          StyleData[
+          "Notebook", "WorkingDark", StyleDefinitions -> 
+           StyleData["Notebook"]], 
+          AutoStyleOptions -> {
+           "CommentStyle" -> {
+             FontColor -> RGBColor[0.596078, 0.462745, 0.666667], 
+              ShowAutoStyles -> False, ShowSyntaxStyles -> False, 
+              AutoNumberFormatting -> False}, 
+            "FunctionLocalVariableStyle" -> {
+             FontColor -> RGBColor[0.8, 0.470588, 0.196078]}, 
+            "GraphicsCompatibilityProblemStyle" -> {
+             FontColor -> RGBColor[1, 0, 0]}, 
+            "LocalScopeConflictStyle" -> {FontColor -> RGBColor[1, 0, 0]}, 
+            "LocalVariableStyle" -> {
+             FontColor -> RGBColor[0.733333, 0.709804, 0.160784]}, 
+            "MissingArgumentStyle" -> {FontColor -> RGBColor[1, 0, 0]}, 
+            "MisspelledWordStyle" -> {FontColor -> RGBColor[1, 0, 0]}, 
+            "NoKernelPresentStyle" -> {FontColor -> RGBColor[1, 0, 0]}, 
+            "PatternVariableStyle" -> {
+             FontColor -> RGBColor[0.8, 0.470588, 0.196078], FontSlant -> 
+              "Italic"}, 
+            "StringStyle" -> {
+             FontColor -> RGBColor[0.415686, 0.529412, 0.34902], 
+              ShowAutoStyles -> False, ShowSyntaxStyles -> False, 
+              AutoNumberFormatting -> False}, 
+            "UndefinedSymbolStyle" -> {
+             FontColor -> RGBColor[0.407843, 0.592157, 0.733333]}, 
+            "UnknownOptionStyle" -> {FontColor -> RGBColor[1, 0, 0]}, 
+            "UnwantedAssignmentStyle" -> {FontColor -> RGBColor[1, 0, 0]}}, 
+          CodeAssistOptions -> {
+           "AutoConvertEnable" -> False, 
+            "HeadHighlightStyle" -> {
+             Background -> RGBColor[0.276471, 0.380392, 0.25098], FontColor -> 
+              RGBColor[0.662745, 0.717647, 0.776471], FontWeight -> Bold}, 
+            "MatchHighlightStyle" -> {
+             Background -> RGBColor[0.276471, 0.380392, 0.25098], FontColor -> 
+              RGBColor[0.662745, 0.717647, 0.776471], FontWeight -> Bold}}, 
+          TranslationOptions -> {"Language" -> None}, FontColor -> 
+          RGBColor[0.662745, 0.717647, 0.776471], Background -> 
+          RGBColor[0.168627, 0.168627, 0.168627]], 
+         Cell[
+          StyleData[
+          "Hyperlink", "WorkingDark", StyleDefinitions -> StyleData["Link"]], 
+          CellChangeTimes -> {{3.808730972161214*^9, 3.808730982545971*^9}}, 
+          LineColor -> RGBColor[0.596078, 0.462745, 0.666667], FrontFaceColor -> 
+          RGBColor[0.596078, 0.462745, 0.666667], BackFaceColor -> 
+          RGBColor[0.596078, 0.462745, 0.666667], GraphicsColor -> 
+          RGBColor[0.596078, 0.462745, 0.666667], FontColor -> 
+          RGBColor[0.596078, 0.462745, 0.666667]], 
+         Cell[
+          StyleData[
+          "HyperlinkActive", "WorkingDark", StyleDefinitions -> 
+           StyleData["HyperlinkActive"]], 
+          CellChangeTimes -> {{3.808730972165733*^9, 3.808730982545971*^9}}, 
+          FontColor -> RGBColor[0.8, 0.470588, 0.196078]]}, Open]], 
+      Cell[
+       CellGroupData[{
+         Cell[
+          StyleData["CellExpression"]], 
+         Cell[
+          StyleData[
+          "CellExpression", "WorkingDark", StyleDefinitions -> 
+           StyleData["CellExpression"]], CellFrame -> 0.5, CellFrameColor -> 
+          RGBColor[0.331373, 0.358824, 0.388235], FontColor -> 
+          RGBColor[0.662745, 0.717647, 0.776471], Background -> 
+          RGBColor[0.168627, 0.168627, 0.168627]]}, Closed]], 
+      Cell[
+       CellGroupData[{
+         Cell[
+          StyleData["NotebookHeader"], CellFrame -> {{0, 0}, {0.5, 0.5}}, 
+          CellMargins -> {{5, 0}, {5, 5}}, 
+          CellGroupingRules -> {"SectionGrouping", 40}, 
+          CellFrameMargins -> {{0, 10}, {5, 5}}, CellFrameColor -> 
+          GrayLevel[0], TextAlignment -> Right, FontFamily -> 
+          "Source Sans Pro", FontSize -> 16, FontWeight -> "Normal", 
+          FontSlant -> "Plain", FontColor -> GrayLevel[0.5], Background -> 
+          GrayLevel[0.85]], 
+         Cell[
+          StyleData[
+          "NotebookHeader", "WorkingDark", StyleDefinitions -> 
+           StyleData["NotebookHeader"]], FontColor -> 
+          RGBColor[0.662745, 0.717647, 0.776471], Background -> 
+          RGBColor[
+           0.25176470588235295`, 0.25176470588235295`, 
+            0.25176470588235295`]]}, Closed]], 
+      Cell[
+       CellGroupData[{
+         Cell["InitializationSecion and -Cell", "Subsection"], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData["InitializationSection"], 
+             CellFrame -> {{3, 0}, {0, 0}}, 
+             CellMargins -> {{27, Inherited}, {10, 15}}, 
+             CellGroupingRules -> {"SectionGrouping", 30}, 
+             LineSpacing -> {1, 4}, FontFamily -> "Source Sans Pro", FontSize -> 
+             24, FontColor -> 
+             RGBColor[
+              0.7612268253604944, 0.29576562142366675`, 0.08555733577477684]], 
+            Cell[
+             StyleData[
+             "InitializationSection", "WorkingDark", StyleDefinitions -> 
+              StyleData["InitializationSection"]], CellFrameColor -> 
+             RGBColor[
+              0.33137254901960783`, 0.3588235294117647, 0.38823529411764707`],
+              FontColor -> 
+             RGBColor[
+              0.3843137254901961, 0.592156862745098, 0.3333333333333333]]}, 
+           Closed]], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData["InitializationCell"], Background -> GrayLevel[0.92]], 
+            Cell[
+             StyleData["InitializationCell", "WorkingDark"], Background -> 
+             RGBColor[0.251765, 0.251765, 0.251765]]}, Closed]]}, Open]], 
+      Cell[
+       CellGroupData[{
+         Cell["Author, Affiliation and Abstract", "Subsection"], 
+         Cell[
+          StyleData["Author"], CellMargins -> {{80, 100}, {2, 6}}], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData["Affiliation"], CellMargins -> {{80, 100}, {8, 2}}], 
+            Cell[
+             StyleData[
+             "Affiliation", "WorkingDark", StyleDefinitions -> 
+              StyleData["Affiliation"]], FontColor -> 
+             RGBColor[0.596078, 0.462745, 0.666667]]}, Closed]], 
+         Cell[
+          StyleData["Abstract"], CellMargins -> {{80, 100}, {6, 6}}, FontSize -> 
+          15, FontSlant -> "Plain"], 
+         Cell["Styles for Title and Section Cells", "Section"], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData["Title"], CellFrame -> {{0, 0}, {4, 4}}, 
+             CellFrameColor -> GrayLevel[0]], 
+            Cell[
+             StyleData[
+             "Title", "WorkingDark", StyleDefinitions -> StyleData["Title"]], 
+             CellFrameColor -> RGBColor[0.331373, 0.358824, 0.388235], 
+             FontColor -> RGBColor[0.384314, 0.592157, 0.333333]]}, Closed]], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData["Chapter"], CellFrame -> {{0, 0}, {3, 3}}, 
+             CellGroupingRules -> {"SectionGrouping", 20}, TextAlignment -> 
+             Left, TextJustification -> 1, LineSpacing -> {1, 3}, 
+             CounterAssignments -> {{"DisplayFormulaNumbered", 0}}, FontColor -> 
+             RGBColor[
+              0.7612268253604944, 0.29576562142366675`, 0.08555733577477684]], 
+            Cell[
+             StyleData[
+             "Chapter", "WorkingDark", StyleDefinitions -> 
+              StyleData["Chapter"]], CellFrameColor -> 
+             RGBColor[0.331373, 0.358824, 0.388235], FontColor -> 
+             RGBColor[0.384314, 0.592157, 0.333333]]}, Closed]], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData["Section"], CellFrame -> {{0, 0}, {0.5, 0.5}}, 
+             CellGroupingRules -> {"SectionGrouping", 30}, CellFrameColor -> 
+             GrayLevel[0.5]], 
+            Cell[
+             StyleData[
+             "Section", "WorkingDark", StyleDefinitions -> 
+              StyleData["Section"]], CellFrameColor -> 
+             RGBColor[
+              0.33137254901960783`, 0.3588235294117647, 0.38823529411764707`],
+              FontColor -> RGBColor[0.384314, 0.592157, 0.333333]]}, Closed]], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData["Subsection"], CellFrame -> {{3, 0}, {0, 0.5}}, 
+             CellFrameColor -> GrayLevel[0.5]], 
+            Cell[
+             StyleData[
+             "Subsection", "WorkingDark", StyleDefinitions -> 
+              StyleData["Subsection"]], CellFrameColor -> 
+             RGBColor[0.331373, 0.358824, 0.388235], FontColor -> 
+             RGBColor[0.384314, 0.592157, 0.333333]]}, Closed]], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData["Subsubsection"], CellFrame -> {{3, 0}, {0, 0}}, 
+             CellFrameColor -> GrayLevel[0.5]], 
+            Cell[
+             StyleData[
+             "Subsubsection", "WorkingDark", StyleDefinitions -> 
+              StyleData["Subsubsection"]], CellFrameColor -> 
+             RGBColor[0.331373, 0.358824, 0.388235], FontColor -> 
+             RGBColor[0.384314, 0.592157, 0.333333]]}, Closed]], 
+         Cell[
+         "NonEvaluating ", "Subsection", 
+          CellChangeTimes -> {{3.8070354431248274`*^9, 
+           3.8070354578354144`*^9}}], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData[
+             "NonEvaluatingChapter", StyleDefinitions -> 
+              StyleData["Chapter"]], CellFrame -> {{0, 0}, {3, 3}}, 
+             PrivateCellOptions -> {
+              "CellGroupBaseStyle" -> {Evaluatable -> False}}, 
+             CellGroupingRules -> {"SectionGrouping", 20}, TextAlignment -> 
+             Left, TextJustification -> 1, LineSpacing -> {1, 3}, 
+             MenuSortingValue -> 10000, FontSlant -> "Italic", FontColor -> 
+             GrayLevel[0.5]], 
+            Cell[
+             StyleData[
+             "NonEvaluatingChapter", "WorkingDark", StyleDefinitions -> 
+              StyleData["NonEvaluatingChapter"]], CellFrameColor -> 
+             RGBColor[0.331373, 0.358824, 0.388235], FontColor -> 
+             RGBColor[0.331373, 0.358824, 0.388235]]}, Open]], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData[
+             "NonEvaluatingSection", StyleDefinitions -> 
+              StyleData["Section"]], 
+             PrivateCellOptions -> {
+              "CellGroupBaseStyle" -> {Evaluatable -> False}}, 
+             MenuSortingValue -> 10000, FontSlant -> "Italic", FontColor -> 
+             GrayLevel[0.5]], 
+            Cell[
+             StyleData[
+             "NonEvaluatingSection", "WorkingDark", StyleDefinitions -> 
+              StyleData["NonEvaluatingSection"]], CellFrameColor -> 
+             RGBColor[0.331373, 0.358824, 0.388235], FontColor -> 
+             RGBColor[0.331373, 0.358824, 0.388235]]}, Closed]], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData[
+             "NonEvaluatingSubsection", StyleDefinitions -> 
+              StyleData["Subsection"]], 
+             PrivateCellOptions -> {
+              "CellGroupBaseStyle" -> {Evaluatable -> False}}, 
+             MenuSortingValue -> 10000, FontSlant -> "Italic", FontColor -> 
+             GrayLevel[0.5]], 
+            Cell[
+             StyleData[
+             "NonEvaluatingSubsection", "WorkingDark", StyleDefinitions -> 
+              StyleData["NonEvaluatingSubsection"]], CellFrameColor -> 
+             RGBColor[0.331373, 0.358824, 0.388235], FontColor -> 
+             RGBColor[0.331373, 0.358824, 0.388235]]}, Closed]], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData[
+             "NonEvaluatingSubsubsection", StyleDefinitions -> 
+              StyleData["Subsubsection"]], 
+             PrivateCellOptions -> {
+              "CellGroupBaseStyle" -> {Evaluatable -> False}}, 
+             AllowGroupClose -> Automatic, MenuSortingValue -> 10000, 
+             FontSlant -> "Italic", FontColor -> GrayLevel[0.5]], 
+            Cell[
+             StyleData[
+             "NonEvaluatingSubsubsection", "WorkingDark", StyleDefinitions -> 
+              StyleData["NonEvaluatingSubsubsection"]], CellFrameColor -> 
+             RGBColor[0.331373, 0.358824, 0.388235], FontColor -> 
+             RGBColor[0.331373, 0.358824, 0.388235]]}, Closed]], 
+         Cell["Styles for Input and Output Cells", "Section"], 
+         Cell[
+          StyleData["Input"], LinebreakAdjustments -> {0.85, 2, 1, 0, 0}], 
+         Cell[
+          StyleData[
+          "NonEvaluatingInput", StyleDefinitions -> StyleData["Input"]], 
+          Evaluatable -> False, 
+          AutoStyleOptions -> {
+           "CommentStyle" -> {
+             FontColor -> GrayLevel[0.5], ShowAutoStyles -> False, 
+              ShowSyntaxStyles -> False, AutoNumberFormatting -> False}, 
+            "EmphasizedSyntaxErrorStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "FunctionLocalVariableStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "LocalScopeConflictStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "LocalVariableStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "PatternVariableStyle" -> {
+             FontColor -> GrayLevel[0.5], FontSlant -> Italic}, 
+            "StringStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "SymbolShadowingStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "UndefinedSymbolStyle" -> {FontColor -> GrayLevel[0.5]}}, 
+          MenuSortingValue -> 1500, FontColor -> GrayLevel[0.5]], 
+         Cell["Code", "Subsection"], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData["Code"], CellFrame -> {{0.5, 0}, {0, 0}}, 
+             CellMargins -> {{66, 10}, {5, 5}}, InitializationCell -> False, 
+             CellFrameMargins -> {{8, 0}, {5, 5}}], 
+            Cell[
+             StyleData[
+             "Code", "WorkingDark", StyleDefinitions -> StyleData["Code"]], 
+             CellFrameColor -> RGBColor[0.331373, 0.358824, 0.388235]]}, 
+           Open]], 
+         Cell[
+          StyleData[
+          "NonEvaluatingCode", StyleDefinitions -> StyleData["Code"]], 
+          Evaluatable -> False, InitializationCell -> False, CellFrameColor -> 
+          GrayLevel[0.5], 
+          AutoStyleOptions -> {
+           "CommentStyle" -> {
+             FontColor -> GrayLevel[0.5], ShowAutoStyles -> False, 
+              ShowSyntaxStyles -> False, AutoNumberFormatting -> False}, 
+            "EmphasizedSyntaxErrorStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "FunctionLocalVariableStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "LocalScopeConflictStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "LocalVariableStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "PatternVariableStyle" -> {
+             FontColor -> GrayLevel[0.5], FontSlant -> Italic}, 
+            "StringStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "SymbolShadowingStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "UndefinedSymbolStyle" -> {FontColor -> GrayLevel[0.5]}}, 
+          LanguageCategory -> "Formula", MenuSortingValue -> 1450, FontColor -> 
+          GrayLevel[0.5]], 
+         Cell["CodePackage ", "Subsection"], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData["CodePackage", StyleDefinitions -> StyleData["Code"]], 
+             CellFrame -> {{3, 0}, {0, 0}}, MenuSortingValue -> 1451], 
+            Cell[
+             StyleData[
+             "CodePackage", "WorkingDark", StyleDefinitions -> 
+              StyleData["CodePackage"]], CellFrameColor -> 
+             RGBColor[0.331373, 0.358824, 0.388235]]}, Open]], 
+         Cell[
+          StyleData[
+          "NonEvaluatingCodePackage", StyleDefinitions -> 
+           StyleData["CodePackage"]], Evaluatable -> False, 
+          InitializationCell -> False, CellFrameColor -> GrayLevel[0.5], 
+          AutoStyleOptions -> {
+           "CommentStyle" -> {
+             FontColor -> GrayLevel[0.5], ShowAutoStyles -> False, 
+              ShowSyntaxStyles -> False, AutoNumberFormatting -> False}, 
+            "EmphasizedSyntaxErrorStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "FunctionLocalVariableStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "LocalScopeConflictStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "LocalVariableStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "PatternVariableStyle" -> {
+             FontColor -> GrayLevel[0.5], FontSlant -> Italic}, 
+            "StringStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "SymbolShadowingStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "UndefinedSymbolStyle" -> {FontColor -> GrayLevel[0.5]}}, 
+          LanguageCategory -> "Formula", MenuSortingValue -> 1451, FontColor -> 
+          GrayLevel[0.5]], 
+         Cell[
+          CellGroupData[{
+            Cell[
+            "Iconized object ", "Subsection", 
+             CellChangeTimes -> {{3.8070354431248274`*^9, 
+              3.8070354578354144`*^9}, {3.811809860450386*^9, 
+              3.8118098640067024`*^9}}], 
+            Cell[
+             StyleData[
+             "IconizedFrame", "WorkingDark", StyleDefinitions -> 
+              StyleData["IconizedFrame"]], 
+             TemplateBoxOptions -> {
+              DisplayFunction -> (
+                FrameBox[#, BaselinePosition -> Baseline, 
+                 FrameMargins -> {{0, 0}, {2, 1}}, FrameStyle -> 
+                 RGBColor[0.5, 0.5, 0.5], Background -> 
+                 RGBColor[0.35, 0.35, 0.35], RoundingRadius -> 4, 
+                 DefaultBaseStyle -> {
+                  "DialogStyle", FontFamily -> "Roboto", FontSize -> 11}]& ), 
+               Tooltip -> None}], 
+            Cell[
+             StyleData[
+             "IconizedItem", "WorkingDark", StyleDefinitions -> 
+              StyleData["IconizedItem"]], FontColor -> 
+             RGBColor[0.662745, 0.717647, 0.776471], 
+             TagBoxOptions -> {Selectable -> True}], 
+            Cell[
+             StyleData[
+             "IconizedLabel", "WorkingDark", StyleDefinitions -> 
+              StyleData["IconizedLabel"]], FontColor -> 
+             RGBColor[0.596078, 0.462745, 0.666667]], 
+            Cell[
+             StyleData[
+             "IconizedCustomName", "WorkingDark", StyleDefinitions -> 
+              StyleData["IconizedCustomName"]], FontColor -> 
+             RGBColor[0.662745, 0.717647, 0.776471]], 
+            Cell[
+             StyleData[
+             "IconizedDefaultName", "WorkingDark", StyleDefinitions -> 
+              StyleData["IconizedDefaultName"]], 
+             TemplateBoxOptions -> {DisplayFunction -> (DynamicBox[
+                 FEPrivate`Switch[#, "ListIcon", 
+                  FEPrivate`FrontEndResource["FEBitmaps", "IconizeListIcon"], 
+                  "AssociationIcon", 
+                  FEPrivate`FrontEndResource[
+                  "FEBitmaps", "IconizeAssociationIcon"], "StringIcon", 
+                  FEPrivate`FrontEndResource[
+                  "FEBitmaps", "IconizeStringIcon"], "SequenceIcon", 
+                  FEPrivate`FrontEndResource[
+                  "FEBitmaps", "IconizeSequenceIcon"], 
+                  Blank[], #], 
+                 BaseStyle -> {
+                  FontColor -> RGBColor[0.662745, 0.717647, 0.776471], 
+                   FontSize -> 12, 
+                   PrivateFontOptions -> {
+                    "OperatorSubstitution" -> False}}]& )}]}, Open]], 
+         Cell[
+         "Styles for Formulas", "Section", 
+          CellChangeTimes -> {3.8070355288234005`*^9}], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData["DisplayFormula"], CellFrame -> {{0.5, 3}, {3, 0.5}}, 
+             CellMargins -> {{66, 31}, {Inherited, Inherited}}], 
+            Cell[
+             StyleData[
+             "DisplayFormula", "WorkingDark", StyleDefinitions -> 
+              StyleData["DisplayFormula"]], 
+             CellMargins -> {{66, 68}, {Inherited, Inherited}}, 
+             CellFrameColor -> RGBColor[0.331373, 0.358824, 0.388235], 
+             AutoStyleOptions -> {
+              "StringStyle" -> {
+                FontColor -> 
+                 RGBColor[
+                  0.6627450980392157, 0.7176470588235294, 0.7764705882352941],
+                  ShowAutoStyles -> False, ShowSyntaxStyles -> False, 
+                 AutoNumberFormatting -> False}}, FontColor -> 
+             RGBColor[
+              0.6627450980392157, 0.7176470588235294, 0.7764705882352941], 
+             Background -> 
+             RGBColor[
+              0.16862745098039217`, 0.16862745098039217`, 
+               0.16862745098039217`]]}, Closed]], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData[
+             "DisplayFormulaPrinted", StyleDefinitions -> 
+              StyleData["DisplayFormula"]], 
+             CellFrame -> {{0.5, 1.5}, {1.5, 0.5}}, CellDingbat -> 
+             Cell["\[RightGuillemet] ", FontSize -> Inherited + 3]], 
+            Cell[
+             StyleData[
+             "DisplayFormulaPrinted", "WorkingDark", StyleDefinitions -> 
+              StyleData["DisplayFormula"]], 
+             CellMargins -> {{66, 65}, {Inherited, Inherited}}, 
+             CellFrameColor -> RGBColor[0.331373, 0.358824, 0.388235], 
+             AutoStyleOptions -> {
+              "StringStyle" -> {
+                FontColor -> 
+                 RGBColor[
+                  0.6627450980392157, 0.7176470588235294, 0.7764705882352941],
+                  ShowAutoStyles -> False, ShowSyntaxStyles -> False, 
+                 AutoNumberFormatting -> False}}, FontColor -> 
+             RGBColor[
+              0.6627450980392157, 0.7176470588235294, 0.7764705882352941], 
+             Background -> 
+             RGBColor[
+              0.16862745098039217`, 0.16862745098039217`, 
+               0.16862745098039217`]]}, Closed]], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData["DisplayFormulaNumbered"], 
+             CellFrame -> {{0.5, 3}, {3, 0.5}}, CellFrameLabels -> {{None, 
+                Cell[
+                 TextData[{"(", 
+                   CounterBox["Chapter"], ".", 
+                   CounterBox["DisplayFormulaNumbered"], ")"}], 
+                 "DisplayFormulaEquationNumber"]}, {None, None}}], 
+            Cell[
+             StyleData[
+             "DisplayFormulaNumbered", "WorkingDark", StyleDefinitions -> 
+              StyleData["DisplayFormulaNumbered"]], 
+             CellMargins -> {{66, 40}, {Inherited, Inherited}}, 
+             CellFrameColor -> 
+             RGBColor[
+              0.6627450980392157, 0.7176470588235294, 0.7764705882352941], 
+             AutoStyleOptions -> {
+              "StringStyle" -> {
+                FontColor -> RGBColor[0.415686, 0.529412, 0.34902], 
+                 ShowAutoStyles -> False, ShowSyntaxStyles -> False, 
+                 AutoNumberFormatting -> False}}, FontColor -> 
+             RGBColor[
+              0.6627450980392157, 0.7176470588235294, 0.7764705882352941], 
+             Background -> 
+             RGBColor[
+              0.16862745098039217`, 0.16862745098039217`, 
+               0.16862745098039217`]]}, Closed]], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData[
+             "DisplayFormulaNumberedPrinted", StyleDefinitions -> 
+              StyleData["DisplayFormulaNumbered"]], 
+             CellFrame -> {{0.5, 1.5}, {1.5, 0.5}}, CellDingbat -> 
+             Cell["\[RightGuillemet] ", FontSize -> Inherited + 3]], 
+            Cell[
+             StyleData[
+             "DisplayFormulaNumberedPrinted", "WorkingDark", StyleDefinitions -> 
+              StyleData["DisplayFormulaNumbered"]], 
+             CellMargins -> {{66, 40}, {Inherited, Inherited}}, 
+             CellFrameColor -> RGBColor[0.331373, 0.358824, 0.388235], 
+             AutoStyleOptions -> {
+              "StringStyle" -> {
+                FontColor -> 
+                 RGBColor[
+                  0.6627450980392157, 0.7176470588235294, 0.7764705882352941],
+                  ShowAutoStyles -> False, ShowSyntaxStyles -> False, 
+                 AutoNumberFormatting -> False}}, FontColor -> 
+             RGBColor[
+              0.6627450980392157, 0.7176470588235294, 0.7764705882352941], 
+             Background -> 
+             RGBColor[
+              0.16862745098039217`, 0.16862745098039217`, 
+               0.16862745098039217`]]}, Closed]], 
+         Cell["Styles for Printed Runningheads and Footers", "Section"], 
+         Cell[
+          StyleData["PageNumber"], MenuSortingValue -> None, FontFamily -> 
+          "Arial", FontSize -> 6, FontSlant -> Plain], 
+         Cell[
+          StyleData["FooterText"], MenuSortingValue -> None, FontFamily -> 
+          "Arial", FontSize -> 4, FontSlant -> Plain]}, Closed]]}, Open]]}, 
+  Visible -> False, FrontEndVersion -> 
+  "13.0 for Microsoft Windows (64-bit) (February 4, 2022)", StyleDefinitions -> 
+  "PrivateStylesheetFormatting.nb"],
+ExpressionUUID->"cae5eb16-94ff-449e-92ad-1c0dda2e383a"
+]
+

@@ -1,0 +1,920 @@
+Notebook[{
+Cell[BoxData[
+ TemplateBox[{
+  "\[FilledSmallSquare] ", "\"\\\\\[FilledSmallSquare] \"", 
+   "2022-12-06T12:02", "v1 .00", "M. J. Steil", 
+   TemplateBox[{
+    "msteil@theorie.ikp.physik.tu-darmstadt.de", 
+     "mailto:msteil@theorie.ikp.physik.tu-darmstadt.de"}, "HyperlinkURL"], 
+   "TU Darmstadt"},
+  "RowWithSeparators"]], "NotebookHeader",
+ FontFamily->"Source Sans Pro",
+ FontSize->14,
+ FontWeight->"Normal",
+ FontSlant->"Plain",
+ CellTags->"NB`Header",ExpressionUUID->"83e0f5f1-1f3f-40d9-abbf-3ca6b0e7af32"],
+
+Cell[CellGroupData[{
+
+Cell["notebook_plain.nb", \
+"Title",ExpressionUUID->"c62703da-2baf-46d4-9087-88ef95c43060"],
+
+Cell[TextData[{
+ "Martin Jakob ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["Steil", "1"], TraditionalForm]],ExpressionUUID->
+  "f4784444-cd55-4d3e-b499-6e74edc3d30f"]
+}], "Author",ExpressionUUID->"0ea66777-a543-434e-9eaa-14eaa568b91f"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["", "1"], TraditionalForm]],ExpressionUUID->
+  "223f14b8-2bda-4fef-8c97-6b3e29fd5cca"],
+ "Technische Universit\[ADoubleDot]t Darmstadt"
+}], "Affiliation",ExpressionUUID->"542366bb-e560-454c-b945-49d478b19000"],
+
+Cell["Abstract", \
+"Abstract",ExpressionUUID->"7e561066-c7df-494b-8ea0-77b980c802bb"],
+
+Cell[CellGroupData[{
+
+Cell["Initialization", \
+"InitializationSection",ExpressionUUID->"83ee48aa-d448-4d5d-b51a-\
+8f84c22939ec"],
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", "\"\<Global`*\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"SetDirectory", "[", 
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"$DistributedContexts", "=", 
+    RowBox[{"{", "}"}]}], ";"}], "\n", "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"Disable", " ", "Notebookhistory"}], ",", " ", 
+    RowBox[{"[", 
+     RowBox[{
+      RowBox[{"https", ":"}], "//", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"mathematica", ".", "stackexchange", ".", "com"}], "/", 
+          "questions"}], "/", "11258"}], "/", "are"}], "-", "there", "-", 
+       "suitable", "-", "versioning", "-", "systems", "-", "for", "-", 
+       "mathematica", "-", "notebooks"}]}], "]"}]}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"SetOptions", "[", 
+   RowBox[{
+    RowBox[{"EvaluationNotebook", "[", "]"}], ",", 
+    RowBox[{"PrivateNotebookOptions", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"\"\<FileOutlineCache\>\"", "\[Rule]", "False"}], "}"}]}], ",", 
+    RowBox[{"System`TrackCellChangeTimes", "\[Rule]", "False"}]}], "]"}], 
+  "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Display", " ", "the", " ", "Timing", " ", "of", " ", "an", " ", 
+    "Evaluation", " ", "in", " ", "a", " ", "Notebook", " ", 
+    RowBox[{"Window", " ", "[", 
+     RowBox[{
+      RowBox[{"https", ":"}], "//", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"reference", ".", "wolfram", ".", "com"}], "/", "language"}],
+         "/", "howto"}], "/", 
+       RowBox[{
+       "DisplayTheTimingOfAnEvaluationInANotebookWindow", ".", "html"}]}]}], 
+     "]"}]}], " ", "*)"}]}], "\n", 
+ RowBox[{"SetOptions", "[", 
+  RowBox[{
+   RowBox[{"EvaluationNotebook", "[", "]"}], ",", 
+   RowBox[{"EvaluationCompletionAction", "\[Rule]", 
+    RowBox[{"{", "\"\<ShowTiming\>\"", "}"}]}]}], "]"}]}], "Code",
+ InitializationCell->True,
+ CellLabel->"In[1]:=",ExpressionUUID->"dc4b6ff5-3f40-43e2-9d15-522f116dd991"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "*", " ", "AutoSaveEvaluationNotebook", " ", "using", " ", "$Pre"}], " ", 
+   "**)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Needs", "[", 
+     RowBox[{
+     "\"\<AutoSaveEvaluationNotebook`\>\"", ",", 
+      "\"\<D:/Github/Mathematica/Packages/AutoSaveEvaluationNotebook/\
+AutoSaveEvaluationNotebook.m\>\""}], "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"SetOptions", "[", 
+     RowBox[{"AutoSaveEvaluationNotebook", ",", 
+      RowBox[{"\"\<minInterval\>\"", "->", 
+       RowBox[{"Quantity", "[", 
+        RowBox[{"5", ",", "\"\<Minutes\>\""}], "]"}]}]}], "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"CleanUpAutoSavesOnWindowClose", "[", "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"EnableAutoSaveEvaluationNotebook", "[", "]"}], 
+    ";"}]}]}]], "NonEvaluatingCode",
+ InitializationCell->
+  True,ExpressionUUID->"1effdc77-e6a0-4f0d-a800-1532ef2bb30e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"*", " ", "Update", " ", "embedded", " ", "Stylesheet"}], " ", 
+   "**)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Needs", "[", 
+     RowBox[{
+     "\"\<StylesheetTools`\>\"", ",", 
+      "\"\<D:/Github/Mathematica/Packages/StylesheetTools/StylesheetTools.m\>\
+\""}], "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"style", "=", 
+     RowBox[{"GetStyleDefinitions", "[", "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"files", "=", 
+     RowBox[{
+     "FileNames", "[", 
+      "\"\<D:\\\\Desktop\\\\PhD-Thesis\\\\appendix\\\\*.nb\>\"", "]"}]}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"SetStyleDefinitions", "[", 
+     RowBox[{"files", ",", "style"}], "]"}], 
+    ";"}]}]}]], \
+"NonEvaluatingCode",ExpressionUUID->"1053e071-c8d3-4090-bd08-6af4347f39ad"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Chapter 1", \
+"Chapter",ExpressionUUID->"be12ad6b-bdcf-4339-afac-53c098216f81"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"f", "[", "x_", "]"}], ":=", 
+  "x"}]], "NonEvaluatingCode",ExpressionUUID->"9ada3753-6dc4-4f8d-bb6d-\
+f0df553e83e7"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Chapter 2", \
+"Chapter",ExpressionUUID->"ba351ca5-9d9b-4be1-b89e-0f0b42567539"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Eq", ".", " ", "1"}], " ", "in", " ", 
+  RowBox[{
+  "Chap", ".", " ", 
+   "2"}]}]], \
+"DisplayFormulaNumbered",ExpressionUUID->"16223c82-843b-491f-b6e8-\
+d534a3d71f63"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Eq", ".", " ", "2"}], " ", "in", " ", 
+  RowBox[{
+  "Chap", ".", " ", 
+   "2"}]}]], \
+"DisplayFormulaNumbered",ExpressionUUID->"67abe6eb-ce08-49ab-95ca-\
+35f4f012afbf"],
+
+Cell[CellGroupData[{
+
+Cell["Section", \
+"Section",ExpressionUUID->"2512ff2b-e6c4-47cb-bdc2-eb7ff63de6cc"],
+
+Cell[CellGroupData[{
+
+Cell["Subsection", \
+"Subsection",ExpressionUUID->"e69ac98e-4124-4aac-8dc6-6418e89485f0"],
+
+Cell["NonEvaluatingSubsubsection", \
+"NonEvaluatingSubsubsection",ExpressionUUID->"fe966ff5-ff48-4abd-b7d2-\
+3fe4cf67ffbc"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+PrintingStyleEnvironment->"Printout",
+EvaluationCompletionAction->{"ShowTiming"},
+PrintAction->"PrintToNotebook",
+NotebookEventActions:>{"WindowClose" :> If[
+    MemberQ[NB`UUIDs, 
+     ReplaceAll["ExpressionUUID", 
+      NotebookInformation[]]], If[NB`DumpSaveQ === True, 
+      NB`DumpSave[]]; If[NB`DeleteGeneratedCellsQ === True, FrontEndExecute[{
+         FrontEndToken["DeleteGeneratedCells"]}]; Null]; 
+    If[NB`NotebookSave === True, NotebookSave[]; Null]; Null]},
+WindowSize->{1428., 740.25},
+WindowMargins->{{-1440, Automatic}, {Automatic, 0}},
+DockedCells->{},
+PrintingCopies->1,
+PrintingStartingPageNumber->1,
+PrintingPageRange->{32000, 32000},
+PageHeaders->{{
+   Cell[
+    TextData[{
+      StyleBox[
+       CounterBox["Page"], "PageNumber"], 
+      StyleBox["/", "PageNumber"], 
+      StyleBox[
+       CounterBox["LastPage", CounterFunction :> Identity], "PageNumber"]}], 
+    "Header", CellMargins -> {{0, Inherited}, {Inherited, Inherited}}], None, 
+   None}, {
+   Cell[
+    TextData[{
+      StyleBox[
+       CounterBox["Page"], "PageNumber"], 
+      StyleBox["/", "PageNumber"], 
+      StyleBox[
+       CounterBox["LastPage", CounterFunction :> Identity], "PageNumber"]}], 
+    "Header", CellMargins -> {{0, Inherited}, {Inherited, Inherited}}], None, 
+   None}},
+PageFooters->{{
+   Cell[
+    TextData[
+     StyleBox["D:\\Desktop\\field_space_20210316.nb", "FooterText"]], 
+    "Header", CellMargins -> {{0, Inherited}, {Inherited, Inherited}}], None, 
+   Cell[
+    TextData[
+     StyleBox[
+     "2021-03-16T20:23:26 | v3.81 | M. J. Steil | \
+msteil@theorie.ikp.physik.tu-darmstadt.de | TU Darmstadt", "FooterText"]], 
+    "Header", CellMargins -> {{0, Inherited}, {Inherited, Inherited}}]}, {
+   Cell[
+    TextData[
+     StyleBox["D:\\Desktop\\field_space_20210316.nb", "FooterText"]], 
+    "Header", CellMargins -> {{0, Inherited}, {Inherited, Inherited}}], None, 
+   Cell[
+    TextData[
+     StyleBox[
+     "2021-03-16T20:23:26 | v3.81 | M. J. Steil | \
+msteil@theorie.ikp.physik.tu-darmstadt.de | TU Darmstadt", "FooterText"]], 
+    "Header", CellMargins -> {{0, Inherited}, {Inherited, Inherited}}]}},
+PageHeaderLines->{False, False},
+PageFooterLines->{False, False},
+PrintingOptions->{"FacingPages"->True,
+"FirstPageFace"->Right,
+"FirstPageFooter"->True,
+"FirstPageHeader"->True,
+"Magnification"->1,
+"PageSize"->{595.32, 841.92},
+"PaperOrientation"->"Portrait",
+"PaperSize"->{595.32, 841.92},
+"PrintingMargins"->{{28.3465, 28.3465}, {50, 50}}},
+PrivateNotebookOptions->{"FileOutlineCache"->False},
+ShowGroupOpener->False,
+TrackCellChangeTimes->False,
+Magnification:>1.25 Inherited,
+FrontEndVersion->"13.0 for Microsoft Windows (64-bit) (February 4, 2022)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[StyleDefinitions -> "Default.nb"]], 
+   Cell[
+    CellGroupData[{
+      Cell["Style Environment Names", "Section"], 
+      Cell[
+       StyleData[All, "WorkingDark"], CellInsertionPointCell -> 
+       FEPrivate`FrontEndResource["FEExpressions", "CellInsertionMenu"], 
+       MenuSortingValue -> 1101], 
+      Cell[
+       StyleData[All, "Printout"], PageWidth :> PaperWidth, 
+       CellHorizontalScrolling -> True, 
+       CellLabelMargins -> {{2, Inherited}, {Inherited, Inherited}}, 
+       ShowAutoStyles -> False, ShowAutoSpellCheck -> False, ShowSyntaxStyles -> 
+       False, AutoStyleOptions -> {"HighlightMisspelledWords" -> False}, 
+       ScriptMinSize -> 5, MenuSortingValue -> 1500, 
+       PrivateFontOptions -> {"FontType" -> "Outline"}, Magnification -> 
+       0.5]}, Open]], 
+   Cell[
+    CellGroupData[{
+      Cell[
+      "Notebook Style", "Section", 
+       CellChangeTimes -> {3.8070389616379795`*^9}], 
+      Cell[
+       CellGroupData[{
+         Cell[
+          StyleData["Notebook"], PrintingStyleEnvironment -> "Printout", 
+          PrintAction -> "PrintToNotebook", PrintingCopies -> 1, 
+          PageHeaders -> {{
+             Cell[
+              TextData[{
+                StyleBox[
+                 CounterBox["Page"], "PageNumber"], 
+                StyleBox["/", "PageNumber"], 
+                StyleBox[
+                 CounterBox["LastPage", CounterFunction :> Identity], 
+                 "PageNumber"]}], "Header", 
+              CellMargins -> {{0, Inherited}, {Inherited, Inherited}}], None, 
+             None}, {
+             Cell[
+              TextData[{
+                StyleBox[
+                 CounterBox["Page"], "PageNumber"], 
+                StyleBox["/", "PageNumber"], 
+                StyleBox[
+                 CounterBox["LastPage", CounterFunction :> Identity], 
+                 "PageNumber"]}], "Header", 
+              CellMargins -> {{0, Inherited}, {Inherited, Inherited}}], None, 
+             None}}, PageFooters -> {{
+             Cell[
+              TextData[
+               StyleBox[
+                NotebookFileName[], "FooterText"]], "Header", 
+              CellMargins -> {{0, Inherited}, {Inherited, Inherited}}], None, 
+             Cell[
+              TextData[
+               StyleBox[header, "FooterText"]], "Header", 
+              CellMargins -> {{0, Inherited}, {Inherited, Inherited}}]}, {
+             Cell[
+              TextData[
+               StyleBox[
+                NotebookFileName[], "FooterText"]], "Header", 
+              CellMargins -> {{0, Inherited}, {Inherited, Inherited}}], None, 
+             Cell[
+              TextData[
+               StyleBox[header, "FooterText"]], "Header", 
+              CellMargins -> {{0, Inherited}, {Inherited, Inherited}}]}}, 
+          PageHeaderLines -> {False, False}, 
+          PrintingOptions -> {
+           "FacingPages" -> True, "FirstPageFace" -> Right, "FirstPageFooter" -> 
+            True, "FirstPageHeader" -> True, "PageSize" -> {595.32, 841.92}, 
+            "PaperOrientation" -> "Portrait", "PaperSize" -> {595.32, 841.92},
+             "PrintingMargins" -> {{28.3465, 28.3465}, {50, 50}}}, 
+          ShowSyntaxStyles -> True], 
+         Cell[
+          StyleData[
+          "Notebook", "WorkingDark", StyleDefinitions -> 
+           StyleData["Notebook"]], 
+          AutoStyleOptions -> {
+           "CommentStyle" -> {
+             FontColor -> RGBColor[0.596078, 0.462745, 0.666667], 
+              ShowAutoStyles -> False, ShowSyntaxStyles -> False, 
+              AutoNumberFormatting -> False}, 
+            "FunctionLocalVariableStyle" -> {
+             FontColor -> RGBColor[0.8, 0.470588, 0.196078]}, 
+            "GraphicsCompatibilityProblemStyle" -> {
+             FontColor -> RGBColor[1, 0, 0]}, 
+            "LocalScopeConflictStyle" -> {FontColor -> RGBColor[1, 0, 0]}, 
+            "LocalVariableStyle" -> {
+             FontColor -> RGBColor[0.733333, 0.709804, 0.160784]}, 
+            "MissingArgumentStyle" -> {FontColor -> RGBColor[1, 0, 0]}, 
+            "MisspelledWordStyle" -> {FontColor -> RGBColor[1, 0, 0]}, 
+            "NoKernelPresentStyle" -> {FontColor -> RGBColor[1, 0, 0]}, 
+            "PatternVariableStyle" -> {
+             FontColor -> RGBColor[0.8, 0.470588, 0.196078], FontSlant -> 
+              "Italic"}, 
+            "StringStyle" -> {
+             FontColor -> RGBColor[0.415686, 0.529412, 0.34902], 
+              ShowAutoStyles -> False, ShowSyntaxStyles -> False, 
+              AutoNumberFormatting -> False}, 
+            "UndefinedSymbolStyle" -> {
+             FontColor -> RGBColor[0.407843, 0.592157, 0.733333]}, 
+            "UnknownOptionStyle" -> {FontColor -> RGBColor[1, 0, 0]}, 
+            "UnwantedAssignmentStyle" -> {FontColor -> RGBColor[1, 0, 0]}}, 
+          CodeAssistOptions -> {
+           "AutoConvertEnable" -> False, 
+            "HeadHighlightStyle" -> {
+             Background -> RGBColor[0.276471, 0.380392, 0.25098], FontColor -> 
+              RGBColor[0.662745, 0.717647, 0.776471], FontWeight -> Bold}, 
+            "MatchHighlightStyle" -> {
+             Background -> RGBColor[0.276471, 0.380392, 0.25098], FontColor -> 
+              RGBColor[0.662745, 0.717647, 0.776471], FontWeight -> Bold}}, 
+          TranslationOptions -> {"Language" -> None}, FontColor -> 
+          RGBColor[0.662745, 0.717647, 0.776471], Background -> 
+          RGBColor[0.168627, 0.168627, 0.168627]], 
+         Cell[
+          StyleData[
+          "Hyperlink", "WorkingDark", StyleDefinitions -> StyleData["Link"]], 
+          CellChangeTimes -> {{3.808730972161214*^9, 3.808730982545971*^9}}, 
+          LineColor -> RGBColor[0.596078, 0.462745, 0.666667], FrontFaceColor -> 
+          RGBColor[0.596078, 0.462745, 0.666667], BackFaceColor -> 
+          RGBColor[0.596078, 0.462745, 0.666667], GraphicsColor -> 
+          RGBColor[0.596078, 0.462745, 0.666667], FontColor -> 
+          RGBColor[0.596078, 0.462745, 0.666667]], 
+         Cell[
+          StyleData[
+          "HyperlinkActive", "WorkingDark", StyleDefinitions -> 
+           StyleData["HyperlinkActive"]], 
+          CellChangeTimes -> {{3.808730972165733*^9, 3.808730982545971*^9}}, 
+          FontColor -> RGBColor[0.8, 0.470588, 0.196078]]}, Open]], 
+      Cell[
+       CellGroupData[{
+         Cell[
+          StyleData["CellExpression"]], 
+         Cell[
+          StyleData[
+          "CellExpression", "WorkingDark", StyleDefinitions -> 
+           StyleData["CellExpression"]], CellFrame -> 0.5, CellFrameColor -> 
+          RGBColor[0.331373, 0.358824, 0.388235], FontColor -> 
+          RGBColor[0.662745, 0.717647, 0.776471], Background -> 
+          RGBColor[0.168627, 0.168627, 0.168627]]}, Closed]], 
+      Cell[
+       CellGroupData[{
+         Cell[
+          StyleData["NotebookHeader"], CellFrame -> {{0, 0}, {0.5, 0.5}}, 
+          CellMargins -> {{5, 0}, {5, 5}}, 
+          CellGroupingRules -> {"SectionGrouping", 40}, 
+          CellFrameMargins -> {{0, 10}, {5, 5}}, CellFrameColor -> 
+          GrayLevel[0], TextAlignment -> Right, FontFamily -> 
+          "Source Sans Pro", FontSize -> 16, FontWeight -> "Normal", 
+          FontSlant -> "Plain", FontColor -> GrayLevel[0.5], Background -> 
+          GrayLevel[0.85]], 
+         Cell[
+          StyleData[
+          "NotebookHeader", "WorkingDark", StyleDefinitions -> 
+           StyleData["NotebookHeader"]], FontColor -> 
+          RGBColor[0.662745, 0.717647, 0.776471], Background -> 
+          RGBColor[
+           0.25176470588235295`, 0.25176470588235295`, 
+            0.25176470588235295`]]}, Closed]], 
+      Cell[
+       CellGroupData[{
+         Cell["InitializationSecion and -Cell", "Subsection"], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData["InitializationSection"], 
+             CellFrame -> {{3, 0}, {0, 0}}, 
+             CellMargins -> {{27, Inherited}, {10, 15}}, 
+             CellGroupingRules -> {"SectionGrouping", 30}, 
+             LineSpacing -> {1, 4}, FontFamily -> "Source Sans Pro", FontSize -> 
+             24, FontColor -> 
+             RGBColor[
+              0.7612268253604944, 0.29576562142366675`, 0.08555733577477684]], 
+            Cell[
+             StyleData[
+             "InitializationSection", "WorkingDark", StyleDefinitions -> 
+              StyleData["InitializationSection"]], CellFrameColor -> 
+             RGBColor[
+              0.33137254901960783`, 0.3588235294117647, 0.38823529411764707`],
+              FontColor -> 
+             RGBColor[
+              0.3843137254901961, 0.592156862745098, 0.3333333333333333]]}, 
+           Closed]], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData["InitializationCell"], ShowCellTags -> True, 
+             Background -> GrayLevel[0.92]], 
+            Cell[
+             StyleData["InitializationCell", "WorkingDark"], Background -> 
+             RGBColor[0.251765, 0.251765, 0.251765]]}, Closed]]}, Open]], 
+      Cell[
+       CellGroupData[{
+         Cell["Author, Affiliation and Abstract", "Subsection"], 
+         Cell[
+          StyleData["Author"], CellMargins -> {{80, 100}, {2, 6}}], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData["Affiliation"], CellMargins -> {{80, 100}, {8, 2}}], 
+            Cell[
+             StyleData[
+             "Affiliation", "WorkingDark", StyleDefinitions -> 
+              StyleData["Affiliation"]], FontColor -> 
+             RGBColor[0.596078, 0.462745, 0.666667]]}, Closed]], 
+         Cell[
+          StyleData["Abstract"], CellMargins -> {{80, 100}, {6, 6}}, FontSize -> 
+          15, FontSlant -> "Plain"]}, Closed]]}, Open]], 
+   Cell[
+    CellGroupData[{
+      Cell["Styles for Title and Section Cells", "Section"], 
+      Cell[
+       CellGroupData[{
+         Cell[
+          StyleData["Title"], CellFrame -> {{0, 0}, {4, 4}}, CellFrameColor -> 
+          GrayLevel[0]], 
+         Cell[
+          StyleData[
+          "Title", "WorkingDark", StyleDefinitions -> StyleData["Title"]], 
+          CellFrameColor -> RGBColor[0.331373, 0.358824, 0.388235], FontColor -> 
+          RGBColor[0.384314, 0.592157, 0.333333]]}, Closed]], 
+      Cell[
+       CellGroupData[{
+         Cell[
+          StyleData["Chapter"], CellFrame -> {{0, 0}, {3, 3}}, 
+          CellGroupingRules -> {"SectionGrouping", 20}, CellFrameLabels -> {{
+             Cell[
+              TextData[{
+                CounterBox["Chapter"]}], "SectionNumber"], None}, {
+            None, None}}, TextAlignment -> Left, TextJustification -> 1, 
+          LineSpacing -> {1, 3}, CounterIncrements -> "Chapter", 
+          CounterAssignments -> {{"DisplayFormulaNumbered", 0}, {
+            "Section", 0}, {"Subsection", 0}, {"Subsubsection", 0}, {
+            "Item", 0}, {"Subitem", 0}, {"Subsubitem", 0}}, FontColor -> 
+          RGBColor[
+           0.7612268253604944, 0.29576562142366675`, 0.08555733577477684]], 
+         Cell[
+          StyleData[
+          "Chapter", "WorkingDark", StyleDefinitions -> StyleData["Chapter"]],
+           CellFrameColor -> RGBColor[0.331373, 0.358824, 0.388235], 
+          FontColor -> RGBColor[0.384314, 0.592157, 0.333333]]}, Closed]], 
+      Cell[
+       CellGroupData[{
+         Cell[
+          StyleData["Section"], CellFrame -> {{0, 0}, {0.5, 0.5}}, 
+          CellGroupingRules -> {"SectionGrouping", 30}, CellFrameColor -> 
+          GrayLevel[0.5], CellFrameLabels -> {{
+             Cell[
+              TextData[{
+                CounterBox["Chapter"], ".", 
+                CounterBox["Section"]}], "SectionNumber"], None}, {
+            None, None}}, CounterIncrements -> "Section", 
+          CounterAssignments -> {{"Subsection", 0}, {"Subsubsection", 0}, {
+            "Item", 0}, {"Subitem", 0}, {"Subsubitem", 0}}], 
+         Cell[
+          StyleData[
+          "Section", "WorkingDark", StyleDefinitions -> StyleData["Section"]],
+           CellFrameColor -> 
+          RGBColor[
+           0.33137254901960783`, 0.3588235294117647, 0.38823529411764707`], 
+          FontColor -> RGBColor[0.384314, 0.592157, 0.333333]]}, Closed]], 
+      Cell[
+       CellGroupData[{
+         Cell[
+          StyleData["Subsection"], CellFrame -> {{3, 0}, {0, 0.5}}, 
+          CellFrameColor -> GrayLevel[0.5], CellFrameLabels -> {{
+             Cell[
+              TextData[{
+                CounterBox["Chapter"], ".", 
+                CounterBox["Section"], ".", 
+                CounterBox["Subsection"]}], "SectionNumber"], None}, {
+            None, None}}, CounterIncrements -> "Subsection", 
+          CounterAssignments -> {{"Subsubsection", 0}, {"Item", 0}, {
+            "Subitem", 0}, {"Subsubitem", 0}}], 
+         Cell[
+          StyleData[
+          "Subsection", "WorkingDark", StyleDefinitions -> 
+           StyleData["Subsection"]], CellFrameColor -> 
+          RGBColor[0.331373, 0.358824, 0.388235], FontColor -> 
+          RGBColor[0.384314, 0.592157, 0.333333]]}, Closed]], 
+      Cell[
+       CellGroupData[{
+         Cell[
+          StyleData["Subsubsection"], CellFrame -> {{3, 0}, {0, 0}}, 
+          CellFrameColor -> GrayLevel[0.5], CellFrameLabels -> {{
+             Cell[
+              TextData[{
+                CounterBox["Chapter"], ".", 
+                CounterBox["Section"], ".", 
+                CounterBox["Subsection"], ".", 
+                CounterBox["Subsubsection"]}], "SectionNumber"], None}, {
+            None, None}}, CounterIncrements -> "Subsubsection", 
+          CounterAssignments -> {{"Item", 0}, {"Subitem", 0}, {
+            "Subsubitem", 0}}], 
+         Cell[
+          StyleData[
+          "Subsubsection", "WorkingDark", StyleDefinitions -> 
+           StyleData["Subsubsection"]], CellFrameColor -> 
+          RGBColor[0.331373, 0.358824, 0.388235], FontColor -> 
+          RGBColor[0.384314, 0.592157, 0.333333]]}, Closed]], 
+      Cell[
+       CellGroupData[{
+         Cell[
+         "NonEvaluating ", "Subsection", 
+          CellChangeTimes -> {{3.8070354431248274`*^9, 
+           3.8070354578354144`*^9}}], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData[
+             "NonEvaluatingChapter", StyleDefinitions -> 
+              StyleData["Chapter"]], CellFrame -> {{0, 0}, {3, 3}}, 
+             PrivateCellOptions -> {
+              "CellGroupBaseStyle" -> {Evaluatable -> False}}, 
+             CellGroupingRules -> {"SectionGrouping", 20}, TextAlignment -> 
+             Left, TextJustification -> 1, LineSpacing -> {1, 3}, 
+             MenuSortingValue -> 10000, FontSlant -> "Italic", FontColor -> 
+             GrayLevel[0.5]], 
+            Cell[
+             StyleData[
+             "NonEvaluatingChapter", "WorkingDark", StyleDefinitions -> 
+              StyleData["NonEvaluatingChapter"]], CellFrameColor -> 
+             RGBColor[0.331373, 0.358824, 0.388235], FontColor -> 
+             RGBColor[0.331373, 0.358824, 0.388235]]}, Open]], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData[
+             "NonEvaluatingSection", StyleDefinitions -> 
+              StyleData["Section"]], 
+             PrivateCellOptions -> {
+              "CellGroupBaseStyle" -> {Evaluatable -> False}}, 
+             MenuSortingValue -> 10000, FontSlant -> "Italic", FontColor -> 
+             GrayLevel[0.5]], 
+            Cell[
+             StyleData[
+             "NonEvaluatingSection", "WorkingDark", StyleDefinitions -> 
+              StyleData["NonEvaluatingSection"]], CellFrameColor -> 
+             RGBColor[0.331373, 0.358824, 0.388235], FontColor -> 
+             RGBColor[0.331373, 0.358824, 0.388235]]}, Closed]], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData[
+             "NonEvaluatingSubsection", StyleDefinitions -> 
+              StyleData["Subsection"]], 
+             PrivateCellOptions -> {
+              "CellGroupBaseStyle" -> {Evaluatable -> False}}, 
+             MenuSortingValue -> 10000, FontSlant -> "Italic", FontColor -> 
+             GrayLevel[0.5]], 
+            Cell[
+             StyleData[
+             "NonEvaluatingSubsection", "WorkingDark", StyleDefinitions -> 
+              StyleData["NonEvaluatingSubsection"]], CellFrameColor -> 
+             RGBColor[0.331373, 0.358824, 0.388235], FontColor -> 
+             RGBColor[0.331373, 0.358824, 0.388235]]}, Closed]], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData[
+             "NonEvaluatingSubsubsection", StyleDefinitions -> 
+              StyleData["Subsubsection"]], 
+             PrivateCellOptions -> {
+              "CellGroupBaseStyle" -> {Evaluatable -> False}}, 
+             AllowGroupClose -> Automatic, MenuSortingValue -> 10000, 
+             FontSlant -> "Italic", FontColor -> GrayLevel[0.5]], 
+            Cell[
+             StyleData[
+             "NonEvaluatingSubsubsection", "WorkingDark", StyleDefinitions -> 
+              StyleData["NonEvaluatingSubsubsection"]], CellFrameColor -> 
+             RGBColor[0.331373, 0.358824, 0.388235], FontColor -> 
+             RGBColor[0.331373, 0.358824, 0.388235]]}, Closed]], 
+         Cell["Styles for Input and Output Cells", "Section"], 
+         Cell[
+          StyleData["Input"], LinebreakAdjustments -> {0.85, 2, 1, 0, 0}], 
+         Cell[
+          StyleData[
+          "NonEvaluatingInput", StyleDefinitions -> StyleData["Input"]], 
+          Evaluatable -> False, 
+          AutoStyleOptions -> {
+           "CommentStyle" -> {
+             FontColor -> GrayLevel[0.5], ShowAutoStyles -> False, 
+              ShowSyntaxStyles -> False, AutoNumberFormatting -> False}, 
+            "EmphasizedSyntaxErrorStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "FunctionLocalVariableStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "LocalScopeConflictStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "LocalVariableStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "PatternVariableStyle" -> {
+             FontColor -> GrayLevel[0.5], FontSlant -> Italic}, 
+            "StringStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "SymbolShadowingStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "UndefinedSymbolStyle" -> {FontColor -> GrayLevel[0.5]}}, 
+          MenuSortingValue -> 1500, FontColor -> GrayLevel[0.5]], 
+         Cell["Code", "Subsection"], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData["Code"], CellFrame -> {{0.5, 0}, {0, 0}}, 
+             CellMargins -> {{66, 10}, {5, 5}}, InitializationCell -> False, 
+             CellFrameMargins -> {{8, 0}, {5, 5}}], 
+            Cell[
+             StyleData[
+             "Code", "WorkingDark", StyleDefinitions -> StyleData["Code"]], 
+             CellFrameColor -> RGBColor[0.331373, 0.358824, 0.388235]]}, 
+           Open]], 
+         Cell[
+          StyleData[
+          "NonEvaluatingCode", StyleDefinitions -> StyleData["Code"]], 
+          Evaluatable -> False, InitializationCell -> False, CellFrameColor -> 
+          GrayLevel[0.5], 
+          AutoStyleOptions -> {
+           "CommentStyle" -> {
+             FontColor -> GrayLevel[0.5], ShowAutoStyles -> False, 
+              ShowSyntaxStyles -> False, AutoNumberFormatting -> False}, 
+            "EmphasizedSyntaxErrorStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "FunctionLocalVariableStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "LocalScopeConflictStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "LocalVariableStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "PatternVariableStyle" -> {
+             FontColor -> GrayLevel[0.5], FontSlant -> Italic}, 
+            "StringStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "SymbolShadowingStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "UndefinedSymbolStyle" -> {FontColor -> GrayLevel[0.5]}}, 
+          LanguageCategory -> "Formula", MenuSortingValue -> 1450, FontColor -> 
+          GrayLevel[0.5]], 
+         Cell["CodePackage ", "Subsection"], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData["CodePackage", StyleDefinitions -> StyleData["Code"]], 
+             CellFrame -> {{3, 0}, {0, 0}}, MenuSortingValue -> 1451], 
+            Cell[
+             StyleData[
+             "CodePackage", "WorkingDark", StyleDefinitions -> 
+              StyleData["CodePackage"]], CellFrameColor -> 
+             RGBColor[0.331373, 0.358824, 0.388235]]}, Open]], 
+         Cell[
+          StyleData[
+          "NonEvaluatingCodePackage", StyleDefinitions -> 
+           StyleData["CodePackage"]], Evaluatable -> False, 
+          InitializationCell -> False, CellFrameColor -> GrayLevel[0.5], 
+          AutoStyleOptions -> {
+           "CommentStyle" -> {
+             FontColor -> GrayLevel[0.5], ShowAutoStyles -> False, 
+              ShowSyntaxStyles -> False, AutoNumberFormatting -> False}, 
+            "EmphasizedSyntaxErrorStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "FunctionLocalVariableStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "LocalScopeConflictStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "LocalVariableStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "PatternVariableStyle" -> {
+             FontColor -> GrayLevel[0.5], FontSlant -> Italic}, 
+            "StringStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "SymbolShadowingStyle" -> {FontColor -> GrayLevel[0.5]}, 
+            "UndefinedSymbolStyle" -> {FontColor -> GrayLevel[0.5]}}, 
+          LanguageCategory -> "Formula", MenuSortingValue -> 1451, FontColor -> 
+          GrayLevel[0.5]], 
+         Cell[
+          CellGroupData[{
+            Cell[
+            "Iconized object ", "Subsection", 
+             CellChangeTimes -> {{3.8070354431248274`*^9, 
+              3.8070354578354144`*^9}, {3.811809860450386*^9, 
+              3.8118098640067024`*^9}}], 
+            Cell[
+             StyleData[
+             "IconizedFrame", "WorkingDark", StyleDefinitions -> 
+              StyleData["IconizedFrame"]], 
+             TemplateBoxOptions -> {
+              DisplayFunction -> (
+                FrameBox[#, BaselinePosition -> Baseline, 
+                 FrameMargins -> {{0, 0}, {2, 1}}, FrameStyle -> 
+                 RGBColor[0.5, 0.5, 0.5], Background -> 
+                 RGBColor[0.35, 0.35, 0.35], RoundingRadius -> 4, 
+                 DefaultBaseStyle -> {
+                  "DialogStyle", FontFamily -> "Roboto", FontSize -> 11}]& ), 
+               Tooltip -> None}], 
+            Cell[
+             StyleData[
+             "IconizedItem", "WorkingDark", StyleDefinitions -> 
+              StyleData["IconizedItem"]], FontColor -> 
+             RGBColor[0.662745, 0.717647, 0.776471], 
+             TagBoxOptions -> {Selectable -> True}], 
+            Cell[
+             StyleData[
+             "IconizedLabel", "WorkingDark", StyleDefinitions -> 
+              StyleData["IconizedLabel"]], FontColor -> 
+             RGBColor[0.596078, 0.462745, 0.666667]], 
+            Cell[
+             StyleData[
+             "IconizedCustomName", "WorkingDark", StyleDefinitions -> 
+              StyleData["IconizedCustomName"]], FontColor -> 
+             RGBColor[0.662745, 0.717647, 0.776471]], 
+            Cell[
+             StyleData[
+             "IconizedDefaultName", "WorkingDark", StyleDefinitions -> 
+              StyleData["IconizedDefaultName"]], 
+             TemplateBoxOptions -> {DisplayFunction -> (DynamicBox[
+                 FEPrivate`Switch[#, "ListIcon", 
+                  FEPrivate`FrontEndResource["FEBitmaps", "IconizeListIcon"], 
+                  "AssociationIcon", 
+                  FEPrivate`FrontEndResource[
+                  "FEBitmaps", "IconizeAssociationIcon"], "StringIcon", 
+                  FEPrivate`FrontEndResource[
+                  "FEBitmaps", "IconizeStringIcon"], "SequenceIcon", 
+                  FEPrivate`FrontEndResource[
+                  "FEBitmaps", "IconizeSequenceIcon"], 
+                  Blank[], #], 
+                 BaseStyle -> {
+                  FontColor -> RGBColor[0.662745, 0.717647, 0.776471], 
+                   FontSize -> 12, 
+                   PrivateFontOptions -> {
+                    "OperatorSubstitution" -> False}}]& )}]}, Open]], 
+         Cell[
+         "Styles for Formulas", "Section", 
+          CellChangeTimes -> {3.8070355288234005`*^9}], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData["DisplayFormula"], CellFrame -> {{0.5, 3}, {3, 0.5}}, 
+             CellMargins -> {{66, 31}, {Inherited, Inherited}}], 
+            Cell[
+             StyleData[
+             "DisplayFormula", "WorkingDark", StyleDefinitions -> 
+              StyleData["DisplayFormula"]], 
+             CellMargins -> {{66, 68}, {Inherited, Inherited}}, 
+             CellFrameColor -> RGBColor[0.331373, 0.358824, 0.388235], 
+             AutoStyleOptions -> {
+              "StringStyle" -> {
+                FontColor -> 
+                 RGBColor[
+                  0.6627450980392157, 0.7176470588235294, 0.7764705882352941],
+                  ShowAutoStyles -> False, ShowSyntaxStyles -> False, 
+                 AutoNumberFormatting -> False}}, FontColor -> 
+             RGBColor[
+              0.6627450980392157, 0.7176470588235294, 0.7764705882352941], 
+             Background -> 
+             RGBColor[
+              0.16862745098039217`, 0.16862745098039217`, 
+               0.16862745098039217`]]}, Closed]], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData[
+             "DisplayFormulaPrinted", StyleDefinitions -> 
+              StyleData["DisplayFormula"]], 
+             CellFrame -> {{0.5, 1.5}, {1.5, 0.5}}, CellDingbat -> 
+             Cell["\[RightGuillemet] ", FontSize -> Inherited + 3]], 
+            Cell[
+             StyleData[
+             "DisplayFormulaPrinted", "WorkingDark", StyleDefinitions -> 
+              StyleData["DisplayFormula"]], 
+             CellMargins -> {{66, 65}, {Inherited, Inherited}}, 
+             CellFrameColor -> RGBColor[0.331373, 0.358824, 0.388235], 
+             AutoStyleOptions -> {
+              "StringStyle" -> {
+                FontColor -> 
+                 RGBColor[
+                  0.6627450980392157, 0.7176470588235294, 0.7764705882352941],
+                  ShowAutoStyles -> False, ShowSyntaxStyles -> False, 
+                 AutoNumberFormatting -> False}}, FontColor -> 
+             RGBColor[
+              0.6627450980392157, 0.7176470588235294, 0.7764705882352941], 
+             Background -> 
+             RGBColor[
+              0.16862745098039217`, 0.16862745098039217`, 
+               0.16862745098039217`]]}, Closed]], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData["DisplayFormulaNumbered"], 
+             CellFrame -> {{0.5, 3}, {3, 0.5}}, CellFrameLabels -> {{None, 
+                Cell[
+                 TextData[{"(", 
+                   CounterBox["Chapter"], ".", 
+                   CounterBox["DisplayFormulaNumbered"], ")"}], 
+                 "DisplayFormulaEquationNumber"]}, {None, None}}], 
+            Cell[
+             StyleData[
+             "DisplayFormulaNumbered", "WorkingDark", StyleDefinitions -> 
+              StyleData["DisplayFormulaNumbered"]], 
+             CellMargins -> {{66, 40}, {Inherited, Inherited}}, 
+             CellFrameColor -> 
+             RGBColor[
+              0.6627450980392157, 0.7176470588235294, 0.7764705882352941], 
+             AutoStyleOptions -> {
+              "StringStyle" -> {
+                FontColor -> RGBColor[0.415686, 0.529412, 0.34902], 
+                 ShowAutoStyles -> False, ShowSyntaxStyles -> False, 
+                 AutoNumberFormatting -> False}}, FontColor -> 
+             RGBColor[
+              0.6627450980392157, 0.7176470588235294, 0.7764705882352941], 
+             Background -> 
+             RGBColor[
+              0.16862745098039217`, 0.16862745098039217`, 
+               0.16862745098039217`]]}, Closed]], 
+         Cell[
+          CellGroupData[{
+            Cell[
+             StyleData[
+             "DisplayFormulaNumberedPrinted", StyleDefinitions -> 
+              StyleData["DisplayFormulaNumbered"]], 
+             CellFrame -> {{0.5, 1.5}, {1.5, 0.5}}, CellDingbat -> 
+             Cell["\[RightGuillemet] ", FontSize -> Inherited + 3]], 
+            Cell[
+             StyleData[
+             "DisplayFormulaNumberedPrinted", "WorkingDark", StyleDefinitions -> 
+              StyleData["DisplayFormulaNumbered"]], 
+             CellMargins -> {{66, 40}, {Inherited, Inherited}}, 
+             CellFrameColor -> RGBColor[0.331373, 0.358824, 0.388235], 
+             AutoStyleOptions -> {
+              "StringStyle" -> {
+                FontColor -> 
+                 RGBColor[
+                  0.6627450980392157, 0.7176470588235294, 0.7764705882352941],
+                  ShowAutoStyles -> False, ShowSyntaxStyles -> False, 
+                 AutoNumberFormatting -> False}}, FontColor -> 
+             RGBColor[
+              0.6627450980392157, 0.7176470588235294, 0.7764705882352941], 
+             Background -> 
+             RGBColor[
+              0.16862745098039217`, 0.16862745098039217`, 
+               0.16862745098039217`]]}, Closed]], 
+         Cell["Styles for Printed Runningheads and Footers", "Section"], 
+         Cell[
+          StyleData["PageNumber"], MenuSortingValue -> None, FontFamily -> 
+          "Arial", FontSize -> 6, FontSlant -> Plain], 
+         Cell[
+          StyleData["FooterText"], MenuSortingValue -> None, FontFamily -> 
+          "Arial", FontSize -> 4, FontSlant -> Plain]}, Open]]}, Open]]}, 
+  WindowSize -> {1440., 752.25}, 
+  WindowMargins -> {{Automatic, 1434}, {Automatic, -6}}, Visible -> False, 
+  FrontEndVersion -> "13.0 for Microsoft Windows (64-bit) (February 4, 2022)",
+   StyleDefinitions -> "PrivateStylesheetFormatting.nb"],
+ExpressionUUID->"b21003d6-bd2e-4ad1-bee9-8d3347f32645"
+]
+

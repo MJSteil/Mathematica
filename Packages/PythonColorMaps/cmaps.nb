@@ -1,0 +1,354 @@
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["\<\
+23.08.13 - 14:30 \[FilledSmallSquare] v1.02 \[FilledSmallSquare] M. J. Steil \
+\[FilledSmallSquare] msteil@theorie.ikp.physik.tu-darmstadt.de \
+\[FilledSmallSquare] TU Darmstadt\
+\>", "Subtitle",
+ CellTags->
+  "LastModified",ExpressionUUID->"a12007a5-dbc1-4ae2-941c-71262068c088"],
+
+Cell[CellGroupData[{
+
+Cell["Initialization", \
+"InitializationSubSection",ExpressionUUID->"950b7be7-c555-4791-ba9a-\
+8b721d5f87ae"],
+
+Cell[BoxData[
+ RowBox[{"Clear", "[", "\"\<Global`*\>\"", "]"}]], "Input",
+ InitializationCell->True,
+ CellLabel->
+  "In[321]:=",ExpressionUUID->"3215357e-25de-4dc7-b835-5d72212097ff"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"SetDirectory", "[", 
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";"}]], "Input",
+ InitializationCell->True,
+ CellLabel->
+  "In[322]:=",ExpressionUUID->"2cc1779e-b50f-4a2b-855a-4f5ec1f99eb9"],
+
+Cell[CellGroupData[{
+
+Cell["Git setup", \
+"Subsubsection",ExpressionUUID->"decd5244-18e4-47a6-b07f-2d7000d31ff9"],
+
+Cell["\<\
+[https://mathematica.stackexchange.com/questions/11258/are-there-suitable-\
+versioning-systems-for-mathematica-notebooks, 2019.02.12 12:01]\
+\>", "Text",ExpressionUUID->"8adecbef-dfb2-496d-b7bf-9ba451962786"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Disable", " ", "Notebookhistory"}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"SetOptions", "[", 
+    RowBox[{
+     RowBox[{"InputNotebook", "[", "]"}], ",", 
+     RowBox[{"PrivateNotebookOptions", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<FileOutlineCache\>\"", "\[Rule]", "False"}], "}"}]}], ",", 
+     RowBox[{"TrackCellChangeTimes", "\[Rule]", "False"}]}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"NB`DeleteGeneratedCellsQ", " ", "=", " ", "True"}], ";"}], " ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"enables", " ", 
+     RowBox[{"FrontEndExecute", "[", 
+      RowBox[{"FrontEndToken", "[", "\"\<DeleteGeneratedCells\>\"", "]"}], 
+      "]"}], " ", "in", " ", "WindowClose"}], "*)"}]}]}]], "Input",
+ InitializationCell->True,
+ CellLabel->"In[323]:=",ExpressionUUID->"d577b724-4935-4154-8ea9-ecd76daae9b4"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Header", \
+"Subsubsection",ExpressionUUID->"e9799da7-e16b-486c-b2e9-0e9cac5893cd"],
+
+Cell[BoxData[
+ RowBox[{"SetOptions", "[", 
+  RowBox[{
+   RowBox[{"EvaluationNotebook", "[", "]"}], ",", 
+   RowBox[{"NotebookEventActions", "\[RuleDelayed]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<WindowClose\>\"", "\[RuleDelayed]", 
+      RowBox[{"Module", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"date", ",", "version", ",", "backupname"}], "}"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{
+          RowBox[{"DumpSave", "[", 
+           RowBox[{"\"\<KernelDump.mx\>\"", ",", "\"\<Global`\>\""}], "]"}], 
+          ";"}], "*)"}], "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"date", "=", 
+          RowBox[{"DateString", "[", 
+           RowBox[{"{", 
+            RowBox[{
+            "\"\<YearShort\>\"", ",", "\"\<.\>\"", ",", "\"\<Month\>\"", ",", 
+             "\"\<.\>\"", ",", "\"\<Day\>\"", ",", "\"\< - \>\"", ",", 
+             "\"\<Hour\>\"", ",", "\"\<:\>\"", ",", "\"\<Minute\>\""}], "}"}],
+            "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"NotebookLocate", "[", "\"\<LastModified\>\"", "]"}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"version", "=", 
+          RowBox[{"Round", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Last", "[", 
+              RowBox[{"StringCases", "[", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"NotebookRead", "[", 
+                  RowBox[{"SelectedNotebook", "[", "]"}], "]"}], "[", 
+                 RowBox[{"[", "1", "]"}], "]"}], ",", 
+                RowBox[{
+                 RowBox[{"x", ":", "NumberString"}], "\[RuleDelayed]", 
+                 RowBox[{"ToExpression", "[", "x", "]"}]}]}], "]"}], "]"}], 
+             "+", "0.01"}], ",", "0.01"}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"NotebookWrite", "[", 
+          RowBox[{
+           RowBox[{"InputNotebook", "[", "]"}], ",", 
+           RowBox[{"Cell", "[", 
+            RowBox[{
+             RowBox[{"TextData", "[", 
+              RowBox[{"{", 
+               RowBox[{"date", ",", "\"\< \[FilledSmallSquare] v\>\"", ",", 
+                RowBox[{"ToString", "[", 
+                 RowBox[{"Round", "[", 
+                  RowBox[{"version", ",", "0.01"}], "]"}], "]"}], ",", 
+                "\"\< \[FilledSmallSquare] M. J. Steil \[FilledSmallSquare] \
+msteil@theorie.ikp.physik.tu-darmstadt.de \[FilledSmallSquare] TU Darmstadt\>\
+\""}], "}"}], "]"}], ",", "\"\<Subtitle\>\"", ",", 
+             RowBox[{"CellTags", "\[Rule]", "\"\<LastModified\>\""}]}], 
+            "]"}]}], "]"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"SameQ", "[", 
+            RowBox[{"NB`DeleteGeneratedCellsQ", " ", ",", "True"}], "]"}], 
+           ",", 
+           RowBox[{"FrontEndExecute", "[", 
+            RowBox[{
+            "FrontEndToken", "[", "\"\<DeleteGeneratedCells\>\"", "]"}], 
+            "]"}]}], "]"}], ";"}]}], "\[IndentingNewLine]", "]"}]}], 
+     "}"}]}]}], "\[IndentingNewLine]", "]"}]], "Input",
+ InitializationCell->True,
+ CellLabel->"In[325]:=",ExpressionUUID->"c63f619d-acc1-457b-bf56-bbc8435fea12"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Methods", \
+"Subsubsection",ExpressionUUID->"13256e5f-4c52-4cf6-b0a5-a545cc6aa258"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"Modified", " ", "Version", " ", "of", " ", 
+     RowBox[{"http", ":"}]}], "//", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"szhorvat", ".", "net"}], "/", "pelican"}], "/", "save"}], "-",
+      "data", "-", "in", "-", 
+     RowBox[{"notebooks", ".", "html"}]}]}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"SetAttributes", "[", 
+    RowBox[{"SaveToCell", ",", "HoldFirst"}], "]"}], "\n", 
+   RowBox[{
+    RowBox[{"SaveToCell", "[", 
+     RowBox[{"var_", ",", 
+      RowBox[{"name", ":", 
+       RowBox[{"Except", "[", 
+        RowBox[{"_", "?", "OptionQ"}], "]"}], ":", "\"\<\>\""}], ",", 
+      RowBox[{"opt", ":", 
+       RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", 
+    RowBox[{"With", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"data", "=", 
+         RowBox[{"Evaluate", "[", "var", "]"}]}], ",", "\[IndentingNewLine]", 
+        RowBox[{"label", "=", 
+         RowBox[{"name", "<>", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"name", "!=", "\"\<\>\""}], ",", "\"\<, \>\"", ",", 
+            "\"\<\>\""}], "]"}], "<>", 
+          RowBox[{"DateString", "[", "\"\<ISODateTime\>\"", "]"}]}]}]}], 
+       "\[IndentingNewLine]", "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"CellPrint", "@", 
+       RowBox[{"Cell", "[", 
+        RowBox[{
+         RowBox[{"BoxData", "@", 
+          RowBox[{"RowBox", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"MakeBoxes", "[", "var", "]"}], ",", "\"\<=\>\"", ",", 
+             RowBox[{"ToBoxes", "[", 
+              RowBox[{"Iconize", "[", 
+               RowBox[{"data", ",", "label", ",", 
+                RowBox[{"Method", "\[Rule]", "Compress"}]}], "]"}], "]"}], 
+             ",", "\"\<;\>\""}], "}"}], "]"}]}], ",", "\"\<Input\>\"", ",", 
+         RowBox[{"GeneratedCell", "\[Rule]", "False"}], ",", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"prevent", " ", "deletion", " ", "by", " ", "Cell"}], ">", 
+           RowBox[{"Delete", " ", "All", " ", 
+            RowBox[{"Output", ":"}]}]}], "*)"}], 
+         RowBox[{"CellLabel", "\[Rule]", "\"\<(saved)\>\""}], ",", "opt", ",", 
+         RowBox[{"CellLabelAutoDelete", "\[Rule]", "False"}]}], "]"}]}]}], 
+     "\[IndentingNewLine]", "]"}]}]}]}]], "Input",
+ InitializationCell->True,
+ CellLabel->"In[326]:=",ExpressionUUID->"95c7d2a0-c00e-4939-abd6-bed93a238ba4"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Python ColorMaps", \
+"Chapter",ExpressionUUID->"9b3e323f-cbdc-4f01-abde-5f2451c58cd8"],
+
+Cell[BoxData[{
+ RowBox[{"viridis", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"RGBColor", "[", 
+     RowBox[{"#", "[", 
+      RowBox[{"[", 
+       RowBox[{"2", ";;"}], "]"}], "]"}], "]"}], "&"}], "/@", 
+   RowBox[{
+   "Import", "[", "\"\<viridis.csv\>\"", "]"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"plasma", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"RGBColor", "[", 
+     RowBox[{"#", "[", 
+      RowBox[{"[", 
+       RowBox[{"2", ";;"}], "]"}], "]"}], "]"}], "&"}], "/@", 
+   RowBox[{
+   "Import", "[", "\"\<plasma.csv\>\"", "]"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"spectral", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"RGBColor", "[", 
+     RowBox[{"#", "[", 
+      RowBox[{"[", 
+       RowBox[{"2", ";;"}], "]"}], "]"}], "]"}], "&"}], "/@", 
+   RowBox[{
+   "Import", "[", "\"\<Spectral.csv\>\"", "]"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"jet", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"RGBColor", "[", 
+     RowBox[{"#", "[", 
+      RowBox[{"[", 
+       RowBox[{"2", ";;"}], "]"}], "]"}], "]"}], "&"}], "/@", 
+   RowBox[{"Import", "[", "\"\<jet.csv\>\"", "]"}]}]}]}], "Input",
+ CellLabel->"In[328]:=",ExpressionUUID->"e43e9fe4-d142-49b9-ae2f-2b7dbb37897b"]
+}, Open  ]]
+}, Open  ]]
+},
+NotebookEventActions:>{
+ "WindowClose" :> 
+  Module[{$CellContext`date, $CellContext`version, $CellContext`backupname}, \
+$CellContext`date = 
+     DateString[{
+       "YearShort", ".", "Month", ".", "Day", " - ", "Hour", ":", "Minute"}]; 
+    NotebookLocate["LastModified"]; $CellContext`version = Round[Last[
+         StringCases[
+          Part[
+           NotebookRead[
+            SelectedNotebook[]], 1], Pattern[$CellContext`x, NumberString] :> 
+          ToExpression[$CellContext`x]]] + 0.01, 0.01]; NotebookWrite[
+      InputNotebook[], 
+      Cell[
+       TextData[{$CellContext`date, " \[FilledSmallSquare] v", 
+         ToString[
+          Round[$CellContext`version, 0.01]], 
+         " \[FilledSmallSquare] M. J. Steil \[FilledSmallSquare] \
+msteil@theorie.ikp.physik.tu-darmstadt.de \[FilledSmallSquare] TU \
+Darmstadt"}], "Subtitle", CellTags -> "LastModified"]]; 
+    If[NB`DeleteGeneratedCellsQ === True, 
+      FrontEndExecute[
+       FrontEndToken["DeleteGeneratedCells"]]]; Null]},
+WindowSize->{1428., 746.25},
+WindowMargins->{{-1440, Automatic}, {Automatic, 0}},
+PrintingCopies->1,
+PrintingPageRange->{32000, 32000},
+PrintingOptions->{"Magnification"->1.,
+"PaperOrientation"->"Portrait",
+"PaperSize"->{595.1999999999999, 841.98}},
+PrivateNotebookOptions->{"FileOutlineCache"->False},
+TrackCellChangeTimes->False,
+Magnification:>1. Inherited,
+FrontEndVersion->"13.0 for Microsoft Windows (64-bit) (February 4, 2022)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[StyleDefinitions -> "Default.nb"]], 
+   Cell[
+    StyleData["Subtitle"], CellFrame -> {{0, 0}, {0.5, 0.5}}, 
+    CellMargins -> {{5, 0}, {5, 5}}, CellFrameColor -> GrayLevel[0], 
+    TextAlignment -> Right, FontSize -> 14, FontColor -> GrayLevel[0.5], 
+    Background -> GrayLevel[0.85]], 
+   Cell[
+    StyleData[
+    "InitializationSubSection", StyleDefinitions -> StyleData["Subsection"]], 
+    CellMargins -> {{50, 0}, {10, 10}}, MenuSortingValue -> 10000], 
+   Cell[
+    StyleData["Chapter"], CellFrame -> {{0, 0}, {3, 3}}, 
+    CellGroupingRules -> {"SectionGrouping", 20}, TextAlignment -> Left, 
+    TextJustification -> 1, LineSpacing -> {1, 3}, FontColor -> 
+    RGBColor[0.7612268253604944, 0.29576562142366675`, 0.08555733577477684]], 
+   Cell[
+    StyleData["Section"], CellFrame -> {{0, 0}, {0.5, 0.5}}, 
+    CellGroupingRules -> {"SectionGrouping", 30}, CellFrameColor -> 
+    GrayLevel[0.5]], 
+   Cell[
+    StyleData["Subsection"], CellFrame -> {{3, 0}, {0, 0.5}}, CellFrameColor -> 
+    GrayLevel[0.5]], 
+   Cell[
+    StyleData["Subsubsection"], CellFrame -> {{3, 0}, {0, 0}}, CellFrameColor -> 
+    GrayLevel[0.5]], 
+   Cell[
+    StyleData["DisplayFormulaNumbered"], CellFrame -> {{0.5, 3}, {3, 0.5}}, 
+    MenuCommandKey :> "8", FontFamily -> "Consolas", FontSize -> 14, 
+    FontWeight -> "Plain", FontSlant -> "Plain", 
+    FontVariations -> {"StrikeThrough" -> False, "Underline" -> False}], 
+   Cell[
+    StyleData["NonEvaluatingInput", StyleDefinitions -> StyleData["Input"]], 
+    Evaluatable -> False, MenuSortingValue -> 1500, FontColor -> 
+    GrayLevel[0.5]], 
+   Cell[
+    StyleData[
+    "NonEvaluatingSection", StyleDefinitions -> StyleData["Section"]], 
+    PrivateCellOptions -> {"CellGroupBaseStyle" -> {Evaluatable -> False}}, 
+    MenuSortingValue -> 10000, FontSlant -> "Italic", FontColor -> 
+    GrayLevel[0.5]], 
+   Cell[
+    StyleData[
+    "NonEvaluatingSubSection", StyleDefinitions -> StyleData["Subsection"]], 
+    PrivateCellOptions -> {"CellGroupBaseStyle" -> {Evaluatable -> False}}, 
+    MenuSortingValue -> 10000, FontSlant -> "Italic", FontColor -> 
+    GrayLevel[0.5]], 
+   Cell[
+    StyleData[
+    "NonEvaluatingSubSubSection", StyleDefinitions -> 
+     StyleData["Subsubsection"]], 
+    PrivateCellOptions -> {"CellGroupBaseStyle" -> {Evaluatable -> False}}, 
+    MenuSortingValue -> 10000, FontSlant -> "Italic", FontColor -> 
+    GrayLevel[0.5]]}, Visible -> False, FrontEndVersion -> 
+  "13.0 for Microsoft Windows (64-bit) (February 4, 2022)", StyleDefinitions -> 
+  "PrivateStylesheetFormatting.nb"],
+ExpressionUUID->"c50335e4-d206-4e5d-aeb4-96b7c807dcc0"
+]
+
