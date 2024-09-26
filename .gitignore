@@ -1,0 +1,7 @@
+*.zip
+
+Setup/CellInsertionPointBitmap.psd
+Setup/CellInsertionPointBitmap_Clear.png
+
+Packages/FormTracer/Documentation/*
+Packages/FormTracer/*

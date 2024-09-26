@@ -1,0 +1,81 @@
+MiscExpressions.tr
+
+Copy C:\Wolfram Research\Mathematica\14.1\SystemFiles\FrontEnd\TextResources\MiscExpressions.tr
+to C:\Users\Martin\AppData\Roaming\Wolfram\SystemFiles\FrontEnd\TextResources\MiscExpressions.tr
+Copy to CellInsertionPointBitmap_Clear.png to C:\Wolfram Research\Mathematica\14.1\SystemFiles\FrontEnd\SystemResources\Bitmaps\Misc
+
+Modify:
+Line 8931: change "StudentBar" to "StudentBarWolfram" and prepend a line "StudentBar"->Cell[], (* EDIT [https://mathematica.stackexchange.com/a/15408/] *)
+Line 10748 change to: FrontEnd`FileName[{"Misc"}, "CellInsertionPointBitmap_Clear.png"]]], (* EDIT *)
+Line 11014:  change FrontEndTokenExecute[EvaluationNotebook[], "StyleOther"]},Appearance -> None] to
+	FrontEndTokenExecute[EvaluationNotebook[], "StyleOther"],
+		(* EDIT [https://mathematica.stackexchange.com/questions/64218/frontend-adding-cell-type-choices-to-the-choose-how-to-enter-input-drop-down] *)
+		Delimiter,
+		"Chaper" :> FrontEndTokenExecute["Style", "Chaper"],
+		"Section" :> FrontEndTokenExecute["Style", "Section"],
+		"Subsection" :> FrontEndTokenExecute["Style", "Subsection"],
+		"Subsubsection" :> FrontEndTokenExecute["Style", "Subsubsection"],
+		Delimiter,
+		"NonEvaluatingChapter" :> FrontEndTokenExecute["Style", "NonEvaluatingChapter"],
+		"NonEvaluatingSection" :> FrontEndTokenExecute["Style", "NonEvaluatingSection"],
+		"NonEvaluatingSubsection" :> FrontEndTokenExecute["Style", "NonEvaluatingSubsection"],
+		"NonEvaluatingSubsubsection" :> FrontEndTokenExecute["Style", "NonEvaluatingSubsubsection"],
+		Delimiter,
+		"DisplayFormulaNumbered" :> FrontEndTokenExecute["Style", "DisplayFormulaNumbered"],
+		"NonEvaluatingInput" :> FrontEndTokenExecute["Style", "NonEvaluatingInput"],
+		"Code" :> FrontEndTokenExecute["Style", "Code"],
+		"NonEvaluatingCode" :> FrontEndTokenExecute["Style", "NonEvaluatingCode"],
+		"CodePackage" :> FrontEndTokenExecute["Style", "CodePackage"],
+		"NonEvaluatingCodePackage" :> FrontEndTokenExecute["Style", "NonEvaluatingCodePackage"]
+		}, 
+	Appearance -> None],
+
+
+KeyEventTranslations.tr
+
+Copy C:\Wolfram Research\Mathematica\14.1\SystemFiles\FrontEnd\TextResources\Windows\KeyEventTranslations.tr
+to C:\Users\Martin\AppData\Roaming\Wolfram\SystemFiles\FrontEnd\TextResources\Windows\KeyEventTranslations.tr
+
+Below Line 9 insert:
+	(* EDIT Custom commands *)
+	Item[KeyEvent["[", Modifiers -> {Control}],
+        FrontEndExecute[{
+            FrontEnd`NotebookWrite[FrontEnd`InputNotebook[],"[[", After]
+        }]
+	],
+	Item[KeyEvent["]", Modifiers -> {Control}],
+        FrontEndExecute[{
+            FrontEnd`NotebookWrite[FrontEnd`InputNotebook[],"]]", After]
+        }]
+	],
+	
+	Item[KeyEvent["Keypad1", Modifiers -> {Control}], 
+		KernelExecute[{
+			SelectionMove[InputNotebook[], All, Cell];
+			With[{style=Replace["Style",First[Developer`CellInformation[SelectedNotebook[]]]]},
+				If[StringContainsQ[style, "NonEvaluating"],
+					FrontEndTokenExecute[SelectedNotebook[], "Style", StringReplace[style,"NonEvaluating" -> ""]];,
+					FrontEndTokenExecute[SelectedNotebook[], "Style", StringJoin["NonEvaluating", style]];
+				];
+			];
+		}],
+	MenuEvaluator->Automatic],
+	
+	Item[KeyEvent["Keypad3", Modifiers -> {Control}], 
+		KernelExecute[{
+			SelectionMove[InputNotebook[], All, Cell];
+			With[{style=Replace["Style",First[Developer`CellInformation[SelectedNotebook[]]]]},
+				If[StringContainsQ[style, "Package"],
+					FrontEndTokenExecute[SelectedNotebook[], "Style", StringReplace[style,"Package" -> ""]];,
+					FrontEndTokenExecute[SelectedNotebook[], "Style", StringJoin[style,"Package"]];
+				];
+			];
+		}],
+	MenuEvaluator->Automatic],
+	
+	Item[KeyEvent["KeypadDivide", Modifiers -> {Control, Command}],
+        FrontEndExecute[{
+            FrontEnd`NotebookWrite[FrontEnd`InputNotebook[],"(* ", After],
+            FrontEnd`NotebookWrite[FrontEnd`InputNotebook[]," *)", Before]			
+        }]
+	],

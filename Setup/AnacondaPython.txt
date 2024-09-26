@@ -1,0 +1,4 @@
+RegisterExternalEvaluator["Python", \
+"C:\\Python\\anaconda3\\python.exe"]
+FindExternalEvaluators["Python"]
+ExternalEvaluate["Python", "2+2"]
